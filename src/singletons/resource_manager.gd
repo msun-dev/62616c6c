@@ -28,6 +28,14 @@ func load_sound(sound_path: String) -> void:
 	sample.initiate_sample(sound_path)
 	samples.append(sample)
 
+func save_data() -> void:
+	# TODO
+	pass
+
+func load_data() -> void:
+	# TODO
+	pass
+
 func _on_files_dropped(files) -> void:
 	for file in files:
 		var ext: StringName = file.get_extension()

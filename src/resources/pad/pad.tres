@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dq0s6wrif3wsm"]
+
+[ext_resource type="Script" uid="uid://cg75b42fy8rmq" path="res://src/resources/pad/pad_resource.gd" id="1_n7sw2"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_n7sw2")
