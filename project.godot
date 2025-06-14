@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="0x30786d7573696331"
+run/main_scene="uid://gbf8dkufhvh5"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MouseObserver="*res://src/singletons/mouse_observer.gd"
+ResourceManager="*res://src/singletons/resource_manager.gd"
 
 [rendering]
 

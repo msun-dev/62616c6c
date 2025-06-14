@@ -32,4 +32,4 @@ func set_label(l: String) -> void:
 	label = l
 
 func _get_sample_ext() -> String:
-	pass
+	return ""
