@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://gbf8dkufhvh5"]
+[gd_scene load_steps=3 format=3 uid="uid://gbf8dkufhvh5"]
 
 [ext_resource type="Script" uid="uid://kv8brqffx4st" path="res://src/objects/pool/pool.gd" id="1_ddgln"]
+[ext_resource type="PackedScene" uid="uid://dh2trg5fl4wfw" path="res://src/objects/sample_player/sample_player.tscn" id="2_aigc8"]
 
 [node name="World" type="Node"]
 
@@ -11,3 +12,5 @@ script = ExtResource("1_ddgln")
 
 [node name="PadPool" type="Node" parent="Pools"]
 script = ExtResource("1_ddgln")
+
+[node name="SamplePlayer" parent="." instance=ExtResource("2_aigc8")]

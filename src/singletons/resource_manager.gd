@@ -9,18 +9,11 @@ var samples: Array[Sample] = []
 func _ready() -> void:
 	get_window().files_dropped.connect(_on_files_dropped)
 
-func save_layout() -> void:
-	pass
-
 func load_palette(image_path: String) -> void:
+	print_debug("Loading palette with given path: %s" % [image_path])
 	if !image_path:
 		return 
-	print_debug("Loading palette at path: %s" % [image_path])
 	var image: Image = Image.load_from_file(image_path)
-	image != null
-	#if image == null:
-		#printerr("Couldn't load an image provided")
-		#return []
 	var size: Vector2i = image.get_size()
 	palette = []
 	for x in size.x:
@@ -30,24 +23,10 @@ func load_palette(image_path: String) -> void:
 				palette.append(color)
 
 func load_sound(sound_path: String) -> void:
-	# Get dir
-	# Iterate over it
-	# 	Create audioplayer node for every sound found
-	# ??? Return list with loaded sounds
-	print_debug("Loading sound at path: %s" % [sound_path])
-	
-	#var dir: DirAccess = DirAccess.open(sounds_path)
-	#if !dir:
-		#return []
-	#var sounds: Array = []
-	#dir.list_dir_begin()
-	#var file_name: String = dir.get_next()
-	#while file_name != "":
-		#if dir.current_is_dir():
-			#continue
-		#file_name = dir.get_next()
-		#sounds.append(file_name)
-	#return sounds
+	print_debug("Loading sound with given path: %s" % [sound_path])
+	var sample := Sample.new()
+	sample.initiate_sample(sound_path)
+	samples.append(sample)
 
 func _on_files_dropped(files) -> void:
 	for file in files:
@@ -58,4 +37,6 @@ func _on_files_dropped(files) -> void:
 			load_palette(file)
 		else:
 			printerr("The heck you dropped")
-	
+
+func get_random_sample() -> Sample:
+	return samples.pick_random() if samples.size() > 0 else null

@@ -1,35 +1,38 @@
+'''
+Honestly, I still don't understand resources
+'''
+
 class_name Sample
-extends Node
+extends Resource
 
 @export var sample_path: String
 @export var label: String
-@export var color: Color
-var loaded_sample: AudioStream
+var stream: AudioStream
 
-func initiate_sample(p: String, l: String, c: Color) -> void:
+func initiate_sample(p: String) -> void:
 	sample_path = p
-	label = l
-	color = c
+	label = p.get_file() #str(sample_path.hash() % 1000000)
 	preload_sample()
-
-func generate_color() -> void:
-	color = Color( 
-		float(sample_path.hash() % 100) / 100,
-		float(sample_path.hash() % 10000) / 10000,
-		float(sample_path.hash() % 1000000) / 1000000,
-	)
 
 func preload_sample() -> void:
 	if !sample_path:
 		printerr("Tried to preload sample with no sample_path!")
-	
-	loaded_sample = AudioStream.new()
+		return
+	match sample_path.get_extension():
+		"wav":
+			stream = AudioStreamWAV.load_from_file(sample_path)
+		"mp3":
+			stream = AudioStreamMP3.load_from_file(sample_path)
+		"ogg":
+			stream = AudioStreamOggVorbis.load_from_file(sample_path)
+		_:
+			printerr("No way this extension is here!")
 
-func set_color(c: Color) -> void:
-	color = c
+func instance() -> AudioStreamPlayback:
+	return stream.instantiate_playback()
 
 func set_label(l: String) -> void:
 	label = l
 
-func _get_sample_ext() -> String:
-	return ""
+func get_stream() -> AudioStream:
+	return stream
