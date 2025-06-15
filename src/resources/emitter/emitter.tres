@@ -1,3 +1,10 @@
-[gd_resource type="Resource" format=3 uid="uid://c385qntkbq57b"]
+[gd_resource type="Resource" script_class="EmitterResource" load_steps=2 format=3 uid="uid://c385qntkbq57b"]
+
+[ext_resource type="Script" uid="uid://c1kv13sruri1c" path="res://src/resources/emitter/emitter_resource.gd" id="1_phsdr"]
 
 [resource]
+resource_local_to_scene = true
+script = ExtResource("1_phsdr")
+position = Vector2(0, 0)
+cooldown = 0.0
+disabled = false

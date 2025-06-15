@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BallResource" load_steps=2 format=3 uid="uid://d2kdyoyy1nsvl"]
+
+[ext_resource type="Script" uid="uid://ct8v2vpdre41m" path="res://src/resources/ball/ball_parameters.gd" id="1_nyt4b"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_nyt4b")
+color = Color(0, 0, 0, 1)

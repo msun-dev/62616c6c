@@ -4,12 +4,13 @@ const sounds_ext: Array[StringName] = ["wav", "mp3", "ogg"]
 const image_ext: Array[StringName] = ["png", "jpg", "jpeg"]
 
 var palette: Array[Color] = []
-var samples: Array[Sample] = []
+var samples: Array[SampleResource] = []
 
 func _ready() -> void:
 	get_window().files_dropped.connect(_on_files_dropped)
 
 func load_palette(image_path: String) -> void:
+	# TODO: Add size check so user dont kill his device with huge ass palette (is this a palette even?)
 	print_debug("Loading palette with given path: %s" % [image_path])
 	if !image_path:
 		return 
@@ -24,16 +25,16 @@ func load_palette(image_path: String) -> void:
 
 func load_sound(sound_path: String) -> void:
 	print_debug("Loading sound with given path: %s" % [sound_path])
-	var sample := Sample.new()
+	var sample := SampleResource.new()
 	sample.initiate_sample(sound_path)
 	samples.append(sample)
 
 func save_data() -> void:
-	# TODO
+	# TODO: Implement
 	pass
 
 func load_data() -> void:
-	# TODO
+	# TODO: Implement
 	pass
 
 func _on_files_dropped(files) -> void:
@@ -46,5 +47,5 @@ func _on_files_dropped(files) -> void:
 		else:
 			printerr("The heck you dropped")
 
-func get_random_sample() -> Sample:
+func get_random_sample() -> SampleResource:
 	return samples.pick_random() if samples.size() > 0 else null

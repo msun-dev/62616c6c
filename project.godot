@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 MouseObserver="*res://src/singletons/mouse_observer.gd"
 ResourceManager="*res://src/singletons/resource_manager.gd"
+SamplePlayer="*res://src/singletons/sample_player.gd"
+
+[physics]
+
+2d/physics_engine="Rapier2D"
 
 [rendering]
 

@@ -2,7 +2,7 @@
 Honestly, I still don't understand resources
 '''
 
-class_name Sample
+class_name SampleResource
 extends Resource
 
 @export var sample_path: String
