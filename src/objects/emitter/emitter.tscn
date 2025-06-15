@@ -4,3 +4,7 @@
 
 [node name="Emitter" type="Marker2D"]
 script = ExtResource("1_7dk3m")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
