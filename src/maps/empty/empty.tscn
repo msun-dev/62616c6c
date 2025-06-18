@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://gbf8dkufhvh5"]
+[gd_scene load_steps=11 format=3 uid="uid://gbf8dkufhvh5"]
 
 [ext_resource type="Script" uid="uid://kv8brqffx4st" path="res://src/objects/pool/pool.gd" id="1_ddgln"]
 [ext_resource type="PackedScene" uid="uid://n20e8qfob6ed" path="res://src/objects/ball/ball.tscn" id="2_3unyu"]
 [ext_resource type="PackedScene" uid="uid://ch6kw7ejdbflk" path="res://src/objects/emitter/emitter.tscn" id="2_e8r7d"]
 [ext_resource type="Script" uid="uid://ct8v2vpdre41m" path="res://src/resources/ball/ball_parameters.gd" id="3_3unyu"]
 [ext_resource type="Script" uid="uid://c1kv13sruri1c" path="res://src/resources/emitter/emitter_resource.gd" id="4_rk71q"]
+[ext_resource type="PackedScene" uid="uid://cy6t0puuvrel" path="res://src/objects/pad/pad.tscn" id="6_v7170"]
 
 [sub_resource type="Resource" id="Resource_rk71q"]
 script = ExtResource("3_3unyu")
@@ -56,3 +57,6 @@ parameters = SubResource("Resource_e8r7d")
 [node name="PadPool" type="Node" parent="Pools"]
 script = ExtResource("1_ddgln")
 metadata/_custom_type_script = "uid://kv8brqffx4st"
+
+[node name="Pad" parent="." instance=ExtResource("6_v7170")]
+position = Vector2(306, 263)

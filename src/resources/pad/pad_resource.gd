@@ -11,9 +11,17 @@ var length: float
 var rotation: float
 
 func _init() -> void:
-	calculate_parameters()
+	_calculate_parameters()
 
-func calculate_parameters() -> void:
+func set_pos(i: int, p: Vector2) -> void:
+	match i:
+		0:
+			pos_a = p
+		1:
+			pos_b = p
+	_calculate_parameters()
+
+func _calculate_parameters() -> void:
 	if !pos_a && !pos_b:
 		printerr("Tried to calculate parameters with empty coordinates")
 		return

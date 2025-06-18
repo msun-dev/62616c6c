@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy6t0puuvrel"]
+
+[ext_resource type="Script" uid="uid://b01i0gxppgxof" path="res://src/objects/pad/pad.gd" id="1_nxjbj"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nxjbj"]
+b = Vector2(81, 63)
+
+[node name="Pad" type="Node2D"]
+script = ExtResource("1_nxjbj")
+
+[node name="StaticBody" type="StaticBody2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="StaticBody"]
+shape = SubResource("SegmentShape2D_nxjbj")

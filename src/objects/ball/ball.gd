@@ -11,6 +11,7 @@ func _ready() -> void:
 		return
 	await ready
 	collision.get_shape().set_radius(parameters.get_radius())
+	get_physics_material_override().set_bounce(parameters.get_bounciness())
 
 func _draw() -> void:
 	if !parameters:
