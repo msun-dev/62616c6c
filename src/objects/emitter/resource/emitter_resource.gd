@@ -1,8 +1,9 @@
 class_name EmitterResource
 extends Resource
 
-@export var position: Vector2
 @export var ball_params: BallResource
+@export var sample_params: SampleResource
+@export var position: Vector2
 @export var cooldown: float
 @export var disabled: bool
 
@@ -17,6 +18,9 @@ func set_cooldown(c: float) -> void:
 
 func get_ball_params() -> BallResource:
 	return ball_params
+
+func get_sample_params() -> SampleResource:
+	return sample_params
 
 func get_cooldown() -> float:
 	return cooldown

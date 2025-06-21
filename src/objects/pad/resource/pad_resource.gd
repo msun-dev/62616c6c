@@ -1,7 +1,6 @@
 class_name PadResource
 extends Resource
 
-@export var sample: SampleResource
 @export var color: Color
 @export var pos_a: Vector2
 @export var pos_b: Vector2

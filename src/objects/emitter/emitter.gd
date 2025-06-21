@@ -6,8 +6,7 @@ extends Marker2D
 const ball_object = "res://src/objects/ball/ball.tscn"
 
 @export var parameters: EmitterResource
-
-var ball_pool: Pool
+@export var ball_pool: Pool
 
 func _init(p: Pool = null) -> void:
 	if p:
@@ -30,5 +29,7 @@ func update_position(p: Vector2) -> void:
 func emit_ball() -> void:
 	var ball: Ball = preload(ball_object).instantiate()
 	ball.parameters = parameters.get_ball_params()
-	add_child(ball)
+	ball.parameters.set_sample(parameters.get_sample_params())
+	ball.set_global_position(get_global_position()) # yeah...
+	ball_pool.add_child(ball)
 	pass

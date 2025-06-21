@@ -1,13 +1,13 @@
 class_name Ball
 extends RigidBody2D
 
-@export var parameters: BallResource
-
 @onready var collision: CollisionShape2D = $Collision
+
+var parameters: BallResource
 
 func _ready() -> void:
 	if !parameters:
-		queue_free()
+		#queue_free()
 		return
 	await ready
 	collision.get_shape().set_radius(parameters.get_radius())

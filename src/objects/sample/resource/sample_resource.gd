@@ -5,8 +5,8 @@ Honestly, I still don't understand resources
 class_name SampleResource
 extends Resource
 
-@export var sample_path: String
-@export var label: String
+@export var sample_path: String = "./"
+@export var label: String = "label.txt"
 var stream: AudioStream
 
 func initiate_sample(p: String) -> void:

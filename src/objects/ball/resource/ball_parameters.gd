@@ -1,9 +1,16 @@
 class_name BallResource
 extends Resource
 
-@export var color: Color
+var color: Color
+var sample: SampleResource
 var bounciness: float = 0.8
 var radius: float = 5.
+
+func set_color(c: Color) -> void:
+	pass
+
+func set_sample(s: SampleResource) -> void:
+	sample = s
 
 func get_color() -> Color:
 	return color

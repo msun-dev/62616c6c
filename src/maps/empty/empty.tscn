@@ -3,32 +3,29 @@
 [ext_resource type="Script" uid="uid://kv8brqffx4st" path="res://src/objects/pool/pool.gd" id="1_ddgln"]
 [ext_resource type="PackedScene" uid="uid://n20e8qfob6ed" path="res://src/objects/ball/ball.tscn" id="2_3unyu"]
 [ext_resource type="PackedScene" uid="uid://ch6kw7ejdbflk" path="res://src/objects/emitter/emitter.tscn" id="2_e8r7d"]
-[ext_resource type="Script" uid="uid://ct8v2vpdre41m" path="res://src/resources/ball/ball_parameters.gd" id="3_3unyu"]
-[ext_resource type="Script" uid="uid://c1kv13sruri1c" path="res://src/resources/emitter/emitter_resource.gd" id="4_rk71q"]
+[ext_resource type="Script" uid="uid://ct8v2vpdre41m" path="res://src/objects/ball/resource/ball_parameters.gd" id="3_3unyu"]
+[ext_resource type="Script" uid="uid://cmo0j03738yc5" path="res://src/objects/sample/resource/sample_resource.gd" id="4_34gvl"]
+[ext_resource type="Script" uid="uid://c1kv13sruri1c" path="res://src/objects/emitter/resource/emitter_resource.gd" id="4_rk71q"]
 [ext_resource type="PackedScene" uid="uid://cy6t0puuvrel" path="res://src/objects/pad/pad.tscn" id="6_v7170"]
 
 [sub_resource type="Resource" id="Resource_rk71q"]
 script = ExtResource("3_3unyu")
-color = Color(0, 0.632, 0.79, 1)
 metadata/_custom_type_script = "uid://ct8v2vpdre41m"
+
+[sub_resource type="Resource" id="Resource_bqht4"]
+script = ExtResource("4_34gvl")
+sample_path = "res://assets/deltarune-explosion.mp3"
+label = "test"
+metadata/_custom_type_script = "uid://cmo0j03738yc5"
 
 [sub_resource type="Resource" id="Resource_v7170"]
 script = ExtResource("4_rk71q")
-position = Vector2(0, 0)
 ball_params = SubResource("Resource_rk71q")
+sample_params = SubResource("Resource_bqht4")
+position = Vector2(0, 0)
 cooldown = 1.0
 disabled = false
 metadata/_custom_type_script = "uid://c1kv13sruri1c"
-
-[sub_resource type="Resource" id="Resource_3unyu"]
-script = ExtResource("3_3unyu")
-color = Color(0.807843, 0.737255, 0.866667, 1)
-metadata/_custom_type_script = "uid://ct8v2vpdre41m"
-
-[sub_resource type="Resource" id="Resource_e8r7d"]
-script = ExtResource("3_3unyu")
-color = Color(0.639216, 0.678431, 0.423529, 1)
-metadata/_custom_type_script = "uid://ct8v2vpdre41m"
 
 [node name="World" type="Node"]
 
@@ -38,9 +35,10 @@ metadata/_custom_type_script = "uid://ct8v2vpdre41m"
 script = ExtResource("1_ddgln")
 metadata/_custom_type_script = "uid://kv8brqffx4st"
 
-[node name="Emitter" parent="Pools/EmitterPool" instance=ExtResource("2_e8r7d")]
+[node name="Emitter" parent="Pools/EmitterPool" node_paths=PackedStringArray("ball_pool") instance=ExtResource("2_e8r7d")]
 position = Vector2(354, 183)
 parameters = SubResource("Resource_v7170")
+ball_pool = NodePath("../../BallPool")
 
 [node name="BallPool" type="Node" parent="Pools"]
 script = ExtResource("1_ddgln")
@@ -48,11 +46,9 @@ metadata/_custom_type_script = "uid://kv8brqffx4st"
 
 [node name="Ball" parent="Pools/BallPool" instance=ExtResource("2_3unyu")]
 position = Vector2(733, 218)
-parameters = SubResource("Resource_3unyu")
 
 [node name="Ball2" parent="Pools/BallPool" instance=ExtResource("2_3unyu")]
 position = Vector2(529, 71)
-parameters = SubResource("Resource_e8r7d")
 
 [node name="PadPool" type="Node" parent="Pools"]
 script = ExtResource("1_ddgln")
