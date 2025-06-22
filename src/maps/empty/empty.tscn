@@ -8,15 +8,19 @@
 [ext_resource type="Script" uid="uid://c1kv13sruri1c" path="res://src/objects/emitter/resource/emitter_resource.gd" id="4_rk71q"]
 [ext_resource type="PackedScene" uid="uid://cy6t0puuvrel" path="res://src/objects/pad/pad.tscn" id="6_v7170"]
 
-[sub_resource type="Resource" id="Resource_rk71q"]
-script = ExtResource("3_3unyu")
-metadata/_custom_type_script = "uid://ct8v2vpdre41m"
-
 [sub_resource type="Resource" id="Resource_bqht4"]
 script = ExtResource("4_34gvl")
 sample_path = "res://assets/deltarune-explosion.mp3"
 label = "test"
 metadata/_custom_type_script = "uid://cmo0j03738yc5"
+
+[sub_resource type="Resource" id="Resource_rk71q"]
+script = ExtResource("3_3unyu")
+color = Color(0, 0, 0, 1)
+sample = SubResource("Resource_bqht4")
+bounciness = 0.8
+radius = 5.0
+metadata/_custom_type_script = "uid://ct8v2vpdre41m"
 
 [sub_resource type="Resource" id="Resource_v7170"]
 script = ExtResource("4_rk71q")
@@ -54,5 +58,5 @@ position = Vector2(529, 71)
 script = ExtResource("1_ddgln")
 metadata/_custom_type_script = "uid://kv8brqffx4st"
 
-[node name="Pad" parent="." instance=ExtResource("6_v7170")]
-position = Vector2(306, 263)
+[node name="Pad" parent="Pools/PadPool" instance=ExtResource("6_v7170")]
+position = Vector2(308, 271)

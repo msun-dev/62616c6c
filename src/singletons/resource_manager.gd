@@ -26,7 +26,8 @@ func load_palette(image_path: String) -> void:
 func load_sound(sound_path: String) -> void:
 	print_debug("Loading sound with given path: %s" % [sound_path])
 	var sample := SampleResource.new()
-	sample.initiate_sample(sound_path)
+	sample.set_sample_path(sound_path)
+	sample.initiate_sample()
 	samples.append(sample)
 
 func save_data() -> void:

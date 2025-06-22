@@ -17,7 +17,6 @@ func _init(p: Pool = null) -> void:
 func _process(delta) -> void:
 	if parameters.is_disabled() && !timer:
 		return
-	#await get_tree().create_timer(parameters.get_cooldown()).timeout
 	if timer.is_stopped():
 		emit_ball()
 		timer.start(parameters.get_cooldown())
@@ -30,6 +29,8 @@ func emit_ball() -> void:
 	var ball: Ball = preload(ball_object).instantiate()
 	ball.parameters = parameters.get_ball_params()
 	ball.parameters.set_sample(parameters.get_sample_params())
+	ball.parameters.get_sample().initiate_sample() # TODO: Remove
+	ball.parameters.set_color(Color(randf(), randf(), randf()))
 	ball.set_global_position(get_global_position()) # yeah...
 	ball_pool.add_child(ball)
 	pass
