@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6nq3gi46mgpv"]
+
+[ext_resource type="Script" uid="uid://cn2my8kep3eff" path="res://src/objects/tools/spawner_generator/spawner_generator.gd" id="1_djsb0"]
+
+[node name="SpawnerGenerator" type="Node"]
+script = ExtResource("1_djsb0")
+icon_path = "res://src/objects/tools/spawner_generator/icon.png"
+metadata/_custom_type_script = "uid://dydesinm1cvoj"

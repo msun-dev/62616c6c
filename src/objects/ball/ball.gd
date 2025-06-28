@@ -26,7 +26,8 @@ func _draw() -> void:
 
 func _on_body_entered(body):
 	# TODO: Add `if pad` statement
-	SamplePlayer.play_sample_at(parameters.get_sample(), get_global_position())
+	#SamplePlayer.play_sample_at(parameters.get_sample(), get_global_position())
+	SamplePlayer.play_sample(parameters.get_sample())
 	pass
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

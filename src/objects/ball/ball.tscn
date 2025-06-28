@@ -7,6 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_msskg"]
 
 [node name="Ball" type="RigidBody2D"]
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_f38mf")
 continuous_cd = 1
 contact_monitor = true

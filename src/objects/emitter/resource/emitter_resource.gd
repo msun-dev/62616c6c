@@ -3,6 +3,7 @@ extends Resource
 
 @export var ball_params: BallResource
 @export var sample_params: SampleResource
+@export var color: Color # TODO: Remove ball_params and add color to emitter 
 @export var position: Vector2
 @export var cooldown: float
 @export var disabled: bool

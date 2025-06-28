@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgwehmfmb3oef"]
+
+[ext_resource type="PackedScene" uid="uid://cwkbnly0vnw1j" path="res://src/objects/UI/preview/preview.tscn" id="1_8mm7w"]
+[ext_resource type="Script" uid="uid://icmlvhk0e8lf" path="res://src/objects/UI/main_ui/ui.gd" id="1_qra4r"]
+
+[sub_resource type="Theme" id="Theme_8mm7w"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qra4r")
+metadata/_edit_lock_ = true
+
+[node name="Palette" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -105.0
+offset_top = 109.0
+offset_bottom = -91.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="SampleScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -175.0
+offset_right = 71.0
+offset_bottom = 175.0
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="SamplesVContainer" type="VBoxContainer" parent="SampleScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Preview" parent="SampleScrollContainer/SamplesVContainer" instance=ExtResource("1_8mm7w")]
+layout_mode = 2
+
+[node name="Preview2" parent="SampleScrollContainer/SamplesVContainer" instance=ExtResource("1_8mm7w")]
+layout_mode = 2
+
+[node name="PaletteScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -175.0
+offset_bottom = 175.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_8mm7w")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="PaletteVContainer" type="VBoxContainer" parent="PaletteScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Preview" parent="PaletteScrollContainer/PaletteVContainer" instance=ExtResource("1_8mm7w")]
+layout_mode = 2
+
+[node name="Preview2" parent="PaletteScrollContainer/PaletteVContainer" instance=ExtResource("1_8mm7w")]
+layout_mode = 2

@@ -6,6 +6,9 @@ const image_ext: Array[StringName] = ["png", "jpg", "jpeg"]
 var palette: Array[Color] = []
 var samples: Array[SampleResource] = []
 
+var selected_color: int = -1
+var selected_sample: int = -1
+
 func _ready() -> void:
 	get_window().files_dropped.connect(_on_files_dropped)
 
@@ -22,13 +25,17 @@ func load_palette(image_path: String) -> void:
 			var color: Color = image.get_pixel(x, y)
 			if color != Color.BLACK && !palette.has(color):
 				palette.append(color)
+				GlobalSignalbus.emit_signal("ColorAdded", color)
+	
 
+# TODO: Play sample when loading to fix first sound not playing
 func load_sound(sound_path: String) -> void:
 	print_debug("Loading sound with given path: %s" % [sound_path])
 	var sample := SampleResource.new()
 	sample.set_sample_path(sound_path)
 	sample.initiate_sample()
 	samples.append(sample)
+	GlobalSignalbus.emit_signal("SampleAdded", samples.back())
 
 func save_data() -> void:
 	# TODO: Implement
@@ -48,5 +55,34 @@ func _on_files_dropped(files) -> void:
 		else:
 			printerr("The heck you dropped")
 
+# TODO: Add size check
+func select_sample(i: int) -> void:
+	selected_sample = i
+
+# TODO: Add size check
+func select_color(i: int) -> void:
+	selected_color = i
+
+func get_samples() -> Array[SampleResource]:
+	return samples
+
+func get_palette() -> Array[Color]:
+	return palette
+
+func get_current_sample() -> SampleResource:
+	if selected_sample != -1:
+		return samples[selected_sample]
+	else:
+		return get_random_sample() 
+
+func get_current_color() -> Color:
+	if selected_color != -1:
+		return palette[selected_color]
+	else:
+		return get_random_color() 
+
 func get_random_sample() -> SampleResource:
 	return samples.pick_random() if samples.size() > 0 else null
+
+func get_random_color() -> Color:
+	return palette.pick_random() if palette.size() > 0 else null

@@ -17,9 +17,22 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+GlobalSignalbus="*res://src/singletons/global_signalbus.gd"
 MouseObserver="*res://src/singletons/mouse_observer.gd"
 ResourceManager="*res://src/singletons/resource_manager.gd"
 SamplePlayer="*res://src/singletons/sample_player.gd"
+
+[display]
+
+window/size/viewport_width=512
+window/size/viewport_height=512
+window/size/resizable=false
+window/stretch/mode="viewport"
+
+[layer_names]
+
+2d_physics/layer_1="Pad"
+2d_physics/layer_2="Ball"
 
 [physics]
 
@@ -27,5 +40,8 @@ SamplePlayer="*res://src/singletons/sample_player.gd"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/decals/filter=0
+textures/light_projectors/filter=0

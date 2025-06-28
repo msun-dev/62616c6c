@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dax8vvne87vkv"]
+
+[ext_resource type="Script" uid="uid://d1vvbu6xhjm5o" path="res://src/objects/tools/tool_holder/tool_holder.gd" id="1_066t1"]
+
+[node name="ToolHolder" type="Node" node_paths=PackedStringArray("tools")]
+script = ExtResource("1_066t1")
+tools = [null]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
