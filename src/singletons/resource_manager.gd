@@ -11,6 +11,10 @@ var selected_sample: int = -1
 
 func _ready() -> void:
 	get_window().files_dropped.connect(_on_files_dropped)
+	
+	load_palette("res://assets/paper-pixels-8x.png")
+	load_sound("res://assets/bass-dry.wav")
+	load_sound("res://assets/normal-hitclap.wav")
 
 func load_palette(image_path: String) -> void:
 	# TODO: Add size check so user dont kill his device with huge ass palette (is this a palette even?)

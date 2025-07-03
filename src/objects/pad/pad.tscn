@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://b01i0gxppgxof" path="res://src/objects/pad/pad.gd" id="1_nxjbj"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_nxjbj"]
-b = Vector2(81, 63)
+resource_local_to_scene = true
+b = Vector2(100, 0)
 
 [node name="Pad" type="Node2D"]
 script = ExtResource("1_nxjbj")
@@ -12,4 +13,5 @@ script = ExtResource("1_nxjbj")
 collision_mask = 2
 
 [node name="Shape" type="CollisionShape2D" parent="StaticBody"]
+unique_name_in_owner = true
 shape = SubResource("SegmentShape2D_nxjbj")

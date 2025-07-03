@@ -1,8 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwkbnly0vnw1j"]
 
 [ext_resource type="FontFile" uid="uid://cr76q6cbvx3bt" path="res://assets/VeraMono.ttf" id="1_4qr5g"]
-[ext_resource type="Texture2D" uid="uid://c2ilyt3d1h4xq" path="res://assets/audio-sprite.png" id="1_6xg6n"]
 [ext_resource type="Script" uid="uid://gho824rb1wrf" path="res://src/objects/UI/preview/preview.gd" id="1_a0fpi"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6xg6n"]
+size = Vector2(60, 34)
 
 [node name="Preview" type="MarginContainer"]
 anchors_preset = 8
@@ -12,8 +14,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -256.0
 offset_top = -256.0
-offset_right = -193.0
-offset_bottom = -206.0
+offset_right = -191.0
+offset_bottom = -204.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -25,6 +27,8 @@ theme_override_constants/margin_bottom = 1
 script = ExtResource("1_a0fpi")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(63, 50)
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
@@ -38,17 +42,24 @@ color = Color(0.374139, 0.374139, 0.374139, 1)
 [node name="VContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="ImageContainer" type="MarginContainer" parent="MarginContainer/VContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="Image" type="TextureRect" parent="MarginContainer/VContainer/ImageContainer"]
+[node name="ImageContainer" type="MarginContainer" parent="MarginContainer/VContainer/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Image" type="TextureRect" parent="MarginContainer/VContainer/MarginContainer/ImageContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("1_6xg6n")
+texture = SubResource("PlaceholderTexture2D_6xg6n")
+expand_mode = 2
 stretch_mode = 3
 
 [node name="NameContainer" type="MarginContainer" parent="MarginContainer/VContainer"]

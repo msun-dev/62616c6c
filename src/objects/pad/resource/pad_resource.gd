@@ -10,7 +10,8 @@ var length: float
 var rotation: float
 
 func _init() -> void:
-	_calculate_parameters()
+	#_calculate_parameters()
+	pass
 
 func set_pos(i: int, p: Vector2) -> void:
 	match i:
@@ -19,6 +20,26 @@ func set_pos(i: int, p: Vector2) -> void:
 		1:
 			pos_b = p
 	_calculate_parameters()
+
+func get_pos(i: int) -> Vector2:
+	match i:
+		0: 
+			return pos_a
+		1:
+			return pos_b
+	return Vector2(0, 0)
+
+func get_color() -> Color:
+	return color
+
+func get_center_pos() -> Vector2:
+	return center
+
+func get_rotation() -> float:
+	return rotation
+	
+func get_length() -> float:
+	return length
 
 func _calculate_parameters() -> void:
 	if !pos_a && !pos_b:

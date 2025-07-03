@@ -2,6 +2,7 @@ class_name Ball
 extends RigidBody2D
 
 @onready var collision: CollisionShape2D = $Collision
+@onready var timer: Timer = $Timer
 
 var parameters: BallResource
 
@@ -27,8 +28,11 @@ func _draw() -> void:
 func _on_body_entered(body):
 	# TODO: Add `if pad` statement
 	#SamplePlayer.play_sample_at(parameters.get_sample(), get_global_position())
+	if !timer.is_stopped():
+		return
 	SamplePlayer.play_sample(parameters.get_sample())
-	pass
+	timer.start(parameters.get_sample_cd())
+	# TODO: After first collision set minimal velocity to X so ball doesnt earrape the user
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

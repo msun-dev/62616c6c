@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://gbf8dkufhvh5"]
+[gd_scene load_steps=18 format=3 uid="uid://gbf8dkufhvh5"]
 
 [ext_resource type="Script" uid="uid://kv8brqffx4st" path="res://src/objects/pool/pool.gd" id="1_ddgln"]
-[ext_resource type="PackedScene" uid="uid://n20e8qfob6ed" path="res://src/objects/ball/ball.tscn" id="2_3unyu"]
 [ext_resource type="PackedScene" uid="uid://ch6kw7ejdbflk" path="res://src/objects/emitter/emitter.tscn" id="2_e8r7d"]
 [ext_resource type="PackedScene" uid="uid://bh432qy4dpm2d" path="res://src/objects/tools/pad_generator/pad_generator.tscn" id="2_o6mgd"]
 [ext_resource type="Script" uid="uid://ct8v2vpdre41m" path="res://src/objects/ball/resource/ball_parameters.gd" id="3_3unyu"]
@@ -69,7 +68,6 @@ metadata/_custom_type_script = "uid://c1kv13sruri1c"
 [node name="World" type="Node"]
 
 [node name="UI" parent="." instance=ExtResource("11_hngsk")]
-visible = false
 
 [node name="ToolHolder" parent="." instance=ExtResource("8_bqht4")]
 
@@ -98,12 +96,6 @@ ball_pool = NodePath("../../BallPool")
 [node name="BallPool" type="Node" parent="Pools"]
 script = ExtResource("1_ddgln")
 metadata/_custom_type_script = "uid://kv8brqffx4st"
-
-[node name="Ball" parent="Pools/BallPool" instance=ExtResource("2_3unyu")]
-position = Vector2(733, 218)
-
-[node name="Ball2" parent="Pools/BallPool" instance=ExtResource("2_3unyu")]
-position = Vector2(529, 71)
 
 [node name="PadPool" type="Node" parent="Pools"]
 script = ExtResource("1_ddgln")

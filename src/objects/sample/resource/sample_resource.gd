@@ -41,3 +41,6 @@ func set_label(l: String) -> void:
 
 func get_stream() -> AudioStream:
 	return stream
+
+func get_label() -> String:
+	return label.get_basename()

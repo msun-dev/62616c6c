@@ -1,10 +1,12 @@
 extends Node
 
-func _input(event) -> void:
-	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
-		var sample: SampleResource = ResourceManager.get_random_sample()
-		if sample: 
-			play_sample(sample)
+'''
+There is a polyphony thing that allows to play million sounds at once.
+Probably had to instance these samples at once and use play method instead
+of instancing sample players. 
+
+TODO: Replace instancing with polyphony
+'''
 
 func play_sample(s: SampleResource) -> void:
 	if !s:

@@ -5,6 +5,7 @@ extends Resource
 @export var sample: SampleResource
 @export var bounciness: float = 0.8
 @export var radius: float = 5.
+var sample_cd: float = .125
 
 func set_color(c: Color) -> void:
 	color = c
@@ -23,3 +24,6 @@ func get_bounciness() -> float:
 
 func get_radius() -> float:
 	return radius
+
+func get_sample_cd() -> float:
+	return sample_cd
