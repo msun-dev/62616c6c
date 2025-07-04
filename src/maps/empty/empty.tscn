@@ -31,7 +31,7 @@ ball_params = SubResource("Resource_rk71q")
 sample_params = SubResource("Resource_bqht4")
 color = Color(0, 0, 0, 1)
 position = Vector2(0, 0)
-cooldown = 2.1
+cooldown = 2.0
 disabled = true
 metadata/_custom_type_script = "uid://c1kv13sruri1c"
 

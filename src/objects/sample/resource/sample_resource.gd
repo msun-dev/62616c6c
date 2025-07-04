@@ -17,9 +17,9 @@ func initiate_sample() -> void:
 	preload_sample()
 
 func preload_sample() -> void:
-	if !sample_path:
-		printerr("Tried to preload sample with no sample_path!")
-		return
+	#if !sample_path:
+		#printerr("Tried to preload sample with no sample_path!")
+		#return
 	match sample_path.get_extension():
 		"wav":
 			stream = AudioStreamWAV.load_from_file(sample_path)

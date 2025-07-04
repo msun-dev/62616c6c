@@ -28,17 +28,22 @@ func _process(delta) -> void:
 func _draw() -> void:
 	if !parameters:
 		return
+	
 	var a: Vector2 = parameters.get_pos(0)
 	var b: Vector2 = parameters.get_pos(1)
 	if a == Vector2.ZERO || b == Vector2.ZERO:
 		return
-	draw_line(a, b, parameters.get_color())
+	# TODO: Make transparent when not active
+	draw_line(a, b, parameters.get_color(), 1)
 
 func update_position(i: int, p: Vector2) -> void:
 	parameters.set_pos(i, p)
 	
 func set_active() -> void:
 	_update_collision()
+
+func destroy() -> void:
+	queue_free()
 
 func _update_collision() -> void:
 	#shape.set_global_position(parameters.get_center_pos())

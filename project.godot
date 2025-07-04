@@ -26,7 +26,6 @@ SamplePlayer="*res://src/singletons/sample_player.gd"
 
 window/size/viewport_width=512
 window/size/viewport_height=512
-window/size/resizable=false
 window/stretch/mode="viewport"
 
 [layer_names]
