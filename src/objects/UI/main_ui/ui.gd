@@ -26,7 +26,7 @@ func add_preview(t: int, r: Variant) -> void:
 			In theory, I could've made this in a draw method (TODO:, btw) using draw_rect for color
 			and draw_texture_rect for audiowave.
 			But I already done it this way. 1D gradient is too small and doesnt scale along y-axis,
-			so used a 2D gradient with one point here. Silly stuff!
+			so I used a 2D gradient instead. Silly stuff!
 			'''
 			var g := GradientTexture2D.new()
 			var gt := Gradient.new()
@@ -35,8 +35,4 @@ func add_preview(t: int, r: Variant) -> void:
 			g.set_gradient(gt)
 			%PaletteVContainer.add_child(node)
 			node.set_image(g)
-			node.set_text("0x" + r.to_html(false))
-
-func create_preview_node() -> void:
-	
-	pass
+			node.set_text("0x" + r.to_html(false).to_upper())

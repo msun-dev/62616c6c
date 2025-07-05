@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwc5e2okremva"]
+
+[ext_resource type="PackedScene" uid="uid://gbf8dkufhvh5" path="res://src/maps/empty/empty.tscn" id="1_vs4gg"]
+[ext_resource type="PackedScene" uid="uid://ch6kw7ejdbflk" path="res://src/objects/emitter/emitter.tscn" id="2_dhsbo"]
+[ext_resource type="Script" uid="uid://cmo0j03738yc5" path="res://src/objects/sample/resource/sample_resource.gd" id="3_viau3"]
+[ext_resource type="Script" uid="uid://c1kv13sruri1c" path="res://src/objects/emitter/resource/emitter_resource.gd" id="4_474mc"]
+
+[sub_resource type="Resource" id="Resource_py8vw"]
+script = ExtResource("3_viau3")
+sample_path = "res://assets/bass-dry.wav"
+label = ""
+metadata/_custom_type_script = "uid://cmo0j03738yc5"
+
+[sub_resource type="Resource" id="Resource_qnb53"]
+script = ExtResource("4_474mc")
+sample_params = SubResource("Resource_py8vw")
+color = Color(0.969727, 0.641049, 0.813651, 1)
+position = Vector2(0, 0)
+cooldown = 1.0
+disabled = false
+metadata/_custom_type_script = "uid://c1kv13sruri1c"
+
+[sub_resource type="Resource" id="Resource_viau3"]
+script = ExtResource("3_viau3")
+sample_path = "res://assets/normal-hitclap.wav"
+label = ""
+metadata/_custom_type_script = "uid://cmo0j03738yc5"
+
+[sub_resource type="Resource" id="Resource_474mc"]
+script = ExtResource("4_474mc")
+sample_params = SubResource("Resource_viau3")
+color = Color(0.378, 0.63, 0.126, 1)
+position = Vector2(0, 0)
+cooldown = 1.0
+disabled = true
+metadata/_custom_type_script = "uid://c1kv13sruri1c"
+
+[node name="World" instance=ExtResource("1_vs4gg")]
+
+[node name="Emitter" parent="Pools/EmitterPool" index="0" node_paths=PackedStringArray("ball_pool") instance=ExtResource("2_dhsbo")]
+position = Vector2(138, 132)
+parameters = SubResource("Resource_qnb53")
+ball_pool = NodePath("../../BallPool")
+
+[node name="Emitter2" parent="Pools/EmitterPool" index="1" node_paths=PackedStringArray("ball_pool") instance=ExtResource("2_dhsbo")]
+position = Vector2(387, 121)
+parameters = SubResource("Resource_474mc")
+ball_pool = NodePath("../../BallPool")
