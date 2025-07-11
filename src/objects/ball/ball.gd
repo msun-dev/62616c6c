@@ -26,6 +26,10 @@ func _draw() -> void:
 	)
 
 func _on_body_entered(body):
+	if parameters.get_sample_cd() == 0:
+		SamplePlayer.play_sample(parameters.get_sample())
+		return
+	
 	# TODO: Add `if pad` statement
 	#SamplePlayer.play_sample_at(parameters.get_sample(), get_global_position())
 	if !timer.is_stopped():

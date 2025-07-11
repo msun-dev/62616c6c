@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwkbnly0vnw1j"]
+[gd_scene load_steps=5 format=3 uid="uid://cwkbnly0vnw1j"]
 
 [ext_resource type="FontFile" uid="uid://cr76q6cbvx3bt" path="res://assets/VeraMono.ttf" id="1_4qr5g"]
 [ext_resource type="Script" uid="uid://gho824rb1wrf" path="res://src/objects/UI/preview/preview.gd" id="1_a0fpi"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6xg6n"]
 size = Vector2(60, 34)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xg6n"]
 
 [node name="Preview" type="MarginContainer"]
 anchors_preset = 8
@@ -35,7 +37,8 @@ theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+[node name="BackgroundRect" type="ColorRect" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 color = Color(0.374139, 0.374139, 0.374139, 1)
 
@@ -81,6 +84,8 @@ clip_text = true
 text_overrun_behavior = 1
 
 [node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
-toggle_mode = true
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6xg6n")
+action_mode = 0
 flat = true

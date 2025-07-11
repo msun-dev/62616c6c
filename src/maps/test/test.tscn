@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwc5e2okremva"]
+[gd_scene load_steps=10 format=3 uid="uid://cwc5e2okremva"]
 
 [ext_resource type="PackedScene" uid="uid://gbf8dkufhvh5" path="res://src/maps/empty/empty.tscn" id="1_vs4gg"]
+[ext_resource type="Script" uid="uid://dar8qp3by5gdc" path="res://src/maps/test/test.gd" id="2_474mc"]
 [ext_resource type="PackedScene" uid="uid://ch6kw7ejdbflk" path="res://src/objects/emitter/emitter.tscn" id="2_dhsbo"]
 [ext_resource type="Script" uid="uid://cmo0j03738yc5" path="res://src/objects/sample/resource/sample_resource.gd" id="3_viau3"]
 [ext_resource type="Script" uid="uid://c1kv13sruri1c" path="res://src/objects/emitter/resource/emitter_resource.gd" id="4_474mc"]
@@ -16,7 +17,7 @@ script = ExtResource("4_474mc")
 sample_params = SubResource("Resource_py8vw")
 color = Color(0.969727, 0.641049, 0.813651, 1)
 position = Vector2(0, 0)
-cooldown = 1.0
+cooldown = 10.0
 disabled = false
 metadata/_custom_type_script = "uid://c1kv13sruri1c"
 
@@ -36,6 +37,14 @@ disabled = true
 metadata/_custom_type_script = "uid://c1kv13sruri1c"
 
 [node name="World" instance=ExtResource("1_vs4gg")]
+script = ExtResource("2_474mc")
+
+[node name="PadGenerator" parent="ToolHolder" index="1"]
+disabled = false
+
+[node name="SpawnerGenerator" parent="ToolHolder" index="2" node_paths=PackedStringArray("emitter_pool", "ball_pool")]
+emitter_pool = NodePath("../../Pools/EmitterPool")
+ball_pool = NodePath("../../Pools/BallPool")
 
 [node name="Emitter" parent="Pools/EmitterPool" index="0" node_paths=PackedStringArray("ball_pool") instance=ExtResource("2_dhsbo")]
 position = Vector2(138, 132)

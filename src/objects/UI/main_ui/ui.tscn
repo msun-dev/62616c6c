@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgwehmfmb3oef"]
+[gd_scene load_steps=6 format=3 uid="uid://bgwehmfmb3oef"]
 
 [ext_resource type="Script" uid="uid://icmlvhk0e8lf" path="res://src/objects/UI/main_ui/ui.gd" id="1_qra4r"]
+[ext_resource type="Texture2D" uid="uid://diqgkqxnrmplq" path="res://src/objects/tools/pad_generator/icon.png" id="2_esn7r"]
 [ext_resource type="Script" uid="uid://k3acx8vrn5ci" path="res://src/objects/UI/main_ui/debug_info.gd" id="3_esn7r"]
+[ext_resource type="Texture2D" uid="uid://beb8vylrk6qj7" path="res://src/objects/tools/spawner_generator/icon.png" id="3_hi45p"]
 
 [sub_resource type="Theme" id="Theme_8mm7w"]
 
@@ -15,6 +17,36 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qra4r")
 metadata/_edit_lock_ = true
+
+[node name="ToolsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.5
+offset_right = 16.5
+offset_bottom = 33.0
+grow_horizontal = 2
+
+[node name="Pad" type="MarginContainer" parent="ToolsContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Button-0" type="Button" parent="ToolsContainer/Pad"]
+layout_mode = 2
+icon = ExtResource("2_esn7r")
+flat = true
+icon_alignment = 1
+
+[node name="Emitter" type="MarginContainer" parent="ToolsContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Button-1" type="Button" parent="ToolsContainer/Emitter"]
+layout_mode = 2
+icon = ExtResource("3_hi45p")
+flat = true
+icon_alignment = 1
 
 [node name="SampleScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -30,6 +62,7 @@ vertical_scroll_mode = 3
 
 [node name="SamplesVContainer" type="VBoxContainer" parent="SampleScrollContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -53,15 +86,20 @@ vertical_scroll_mode = 3
 
 [node name="PaletteVContainer" type="VBoxContainer" parent="PaletteScrollContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="debug_info" type="Control" parent="."]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
 offset_right = 40.0
-offset_bottom = 40.0
+grow_vertical = 0
 script = ExtResource("3_esn7r")
 
 [node name="mouse_pos" type="Label" parent="debug_info"]
@@ -71,3 +109,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 16
 text = "---"
+
+[connection signal="pressed" from="ToolsContainer/Pad/Button-0" to="." method="_on_button_pressed" binds= [0]]
+[connection signal="pressed" from="ToolsContainer/Emitter/Button-1" to="." method="_on_button_pressed" binds= [1]]

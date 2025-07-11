@@ -15,3 +15,4 @@ collision_mask = 2
 [node name="Shape" type="CollisionShape2D" parent="StaticBody"]
 unique_name_in_owner = true
 shape = SubResource("SegmentShape2D_nxjbj")
+disabled = true

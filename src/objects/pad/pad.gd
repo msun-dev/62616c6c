@@ -17,6 +17,8 @@ extends Node2D
 @onready var collision: StaticBody2D = $StaticBody
 @onready var shape: CollisionShape2D = %Shape
 
+var active := false
+
 func _ready() -> void:
 	if !parameters:
 		queue_free()
@@ -33,13 +35,17 @@ func _draw() -> void:
 	var b: Vector2 = parameters.get_pos(1)
 	if a == Vector2.ZERO || b == Vector2.ZERO:
 		return
-	# TODO: Make transparent when not active
-	draw_line(a, b, parameters.get_color(), 1)
+
+	if active:
+		draw_line(a, b, parameters.get_color(), parameters.get_width())
+	else:
+		draw_dashed_line(a, b, parameters.get_color(), parameters.get_width(), 3.)
 
 func update_position(i: int, p: Vector2) -> void:
 	parameters.set_pos(i, p)
 	
 func set_active() -> void:
+	active = true
 	_update_collision()
 
 func destroy() -> void:
@@ -48,5 +54,6 @@ func destroy() -> void:
 func _update_collision() -> void:
 	#shape.set_global_position(parameters.get_center_pos())
 	#shape.set_rotation(parameters.get_rotation())
+	shape.set_disabled(false)
 	shape.shape.set_a(parameters.get_pos(0))
 	shape.shape.set_b(parameters.get_pos(1))

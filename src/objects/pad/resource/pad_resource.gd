@@ -5,6 +5,8 @@ extends Resource
 @export var pos_a: Vector2
 @export var pos_b: Vector2
 
+var width: float = 2.
+
 var center: Vector2
 var length: float
 var rotation: float
@@ -21,6 +23,9 @@ func set_pos(i: int, p: Vector2) -> void:
 			pos_b = p
 	_calculate_parameters()
 
+func set_color(c: Color) -> void:
+	color = c
+
 func get_pos(i: int) -> Vector2:
 	match i:
 		0: 
@@ -28,6 +33,9 @@ func get_pos(i: int) -> Vector2:
 		1:
 			return pos_b
 	return Vector2(0, 0)
+
+func get_width() -> float:
+	return width
 
 func get_color() -> Color:
 	return color
