@@ -37,7 +37,6 @@ func add_preview(t: int, r: Variant, i: int) -> void:
 			%PaletteVContainer.add_child(node)
 			node.set_image(g)
 			node.set_text("0x" + r.to_html(false).to_upper())
-	# TODO: Make separate signals 
 	node.button.pressed.connect(_on_preview_selected.bind(node))
 
 func tool_select(t: int) -> void:

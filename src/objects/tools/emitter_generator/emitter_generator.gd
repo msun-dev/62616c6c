@@ -24,8 +24,9 @@ func _unhandled_input(event) -> void:
 	if (event is InputEventMouseButton && 
 		event.is_pressed() &&
 		event.button_index == MOUSE_BUTTON_RIGHT):
-		# TODO: Move deleter to a tool. Make tool a node and fix detection algo
-		pass
+		var b: Emitter = _get_body_under_mouse(0x0002, Emitter)
+		if b:
+			b.destroy()
 
 func _create_emitter(p: Vector2) -> void:
 	var cur_col: Array = ResourceManager.get_current_color()
@@ -33,13 +34,14 @@ func _create_emitter(p: Vector2) -> void:
 	if !cur_col[0] || !cur_smp[0]:
 		return
 	
+	# TODO: Remove direct access to parameters
 	emitter = emitter_path.instantiate()
 	emitter.parameters = EmitterResource.new()
 	emitter.parameters.set_color(cur_col[1])
 	emitter.parameters.set_sample(cur_smp[1])
 	emitter.update_position(MouseObserver.get_mouse_pos())
 	emitter.ball_pool = ball_pool
-	add_child(emitter)
+	emitter_pool.add_child(emitter)
 
 func _on_tool_selected(t: int) -> void:
 	if t == type:

@@ -45,7 +45,7 @@ func get_center_pos() -> Vector2:
 
 func get_rotation() -> float:
 	return rotation
-	
+
 func get_length() -> float:
 	return length
 

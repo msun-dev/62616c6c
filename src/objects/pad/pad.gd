@@ -7,15 +7,20 @@ Wait, maybe I'm wrong...
 
 - [x] TODO: Update this comment
 
-There are to_global and to_local methods exist. Check them out! 
+There are to_global and to_local methods exist. Check them out!
+
+Also pad is implemented wrong since %Shape is in global coords and %Pad sits at (0, 0)
 '''
 class_name Pad
 extends Node2D
 
 @export var parameters: PadResource
 
-@onready var collision: StaticBody2D = $StaticBody
+@onready var collision: StaticBody2D = $Collision
 @onready var shape: CollisionShape2D = %Shape
+@onready var mouse_shape: CollisionShape2D = %MouseShape
+
+const mouse_hitbox_size: float = 5
 
 var active := false
 
@@ -25,7 +30,8 @@ func _ready() -> void:
 	pass
 
 func _process(delta) -> void:
-	queue_redraw() # TODO: Remove if called from somewhere else
+	if !active:
+		queue_redraw() # NB: Remove if pools are canvaslayers
 
 func _draw() -> void:
 	if !parameters:
@@ -57,3 +63,6 @@ func _update_collision() -> void:
 	shape.set_disabled(false)
 	shape.shape.set_a(parameters.get_pos(0))
 	shape.shape.set_b(parameters.get_pos(1))
+	mouse_shape.shape.set_size(Vector2(parameters.get_length(), mouse_hitbox_size))
+	mouse_shape.set_position(parameters.get_center_pos())
+	mouse_shape.set_rotation(parameters.get_rotation())

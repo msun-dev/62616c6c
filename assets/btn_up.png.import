@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beb8vylrk6qj7"
-path="res://.godot/imported/icon.png-39daad96983eb5d0b3bfe836d2ee6621.ctex"
+uid="uid://craqhcrtursgw"
+path="res://.godot/imported/btn_up.png-623fe1ffc8a3179fedf83fc6fa1e7ed5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/tools/spawner_generator/icon.png"
-dest_files=["res://.godot/imported/icon.png-39daad96983eb5d0b3bfe836d2ee6621.ctex"]
+source_file="res://assets/btn_up.png"
+dest_files=["res://.godot/imported/btn_up.png-623fe1ffc8a3179fedf83fc6fa1e7ed5.ctex"]
 
 [params]
 

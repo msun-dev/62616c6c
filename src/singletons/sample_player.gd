@@ -5,12 +5,18 @@ There is a polyphony thing that allows to play million sounds at once.
 Probably had to instance these samples at once and use play method instead
 of instancing sample players. 
 
-TODO: Replace instancing with polyphony
+LTODO: Replace instancing with polyphony
 '''
 
+func preload_sample(s: SampleResource) -> void:
+	var sound := AudioStreamPlayer.new()
+	sound.set_stream(s.get_stream())
+	sound.set_volume_db(-100)
+	sound.finished.connect(Callable(self, "_on_player_finish").bind(sound))
+	add_child(sound)
+	sound.play()
+
 func play_sample(s: SampleResource) -> void:
-	if !s:
-		printerr("Tried to play sample with no sample provided!")
 	var sound := AudioStreamPlayer.new()
 	sound.set_stream(s.get_stream())
 	sound.finished.connect(Callable(self, "_on_player_finish").bind(sound))
@@ -18,8 +24,6 @@ func play_sample(s: SampleResource) -> void:
 	sound.play()
 
 func play_sample_at(s: SampleResource, p: Vector2) -> void:
-	if !s || !p:
-		printerr("Tried to play sample with no sample or position provided!")
 	var sound := AudioStreamPlayer2D.new()
 	sound.set_stream(s.get_stream())
 	sound.set_global_position(p)

@@ -42,10 +42,6 @@ script = ExtResource("2_474mc")
 [node name="PadGenerator" parent="ToolHolder" index="1"]
 disabled = false
 
-[node name="SpawnerGenerator" parent="ToolHolder" index="2" node_paths=PackedStringArray("emitter_pool", "ball_pool")]
-emitter_pool = NodePath("../../Pools/EmitterPool")
-ball_pool = NodePath("../../Pools/BallPool")
-
 [node name="Emitter" parent="Pools/EmitterPool" index="0" node_paths=PackedStringArray("ball_pool") instance=ExtResource("2_dhsbo")]
 position = Vector2(138, 132)
 parameters = SubResource("Resource_qnb53")

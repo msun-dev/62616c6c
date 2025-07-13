@@ -26,13 +26,18 @@ SamplePlayer="*res://src/singletons/sample_player.gd"
 
 window/size/viewport_width=512
 window/size/viewport_height=512
+window/size/mode=2
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
+
+[gui]
+
+theme/default_font_antialiasing=0
 
 [layer_names]
 
 2d_physics/layer_1="Pad"
-2d_physics/layer_2="Ball"
+2d_physics/layer_2="Emitter"
+2d_physics/layer_10="Ball"
 
 [physics]
 

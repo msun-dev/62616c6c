@@ -1,24 +1,23 @@
 extends Tool
 
-@onready var deleter: Area2D = $Deleter
-
-@export var debug_draw: bool = false
-@export var pad_pool: Node = null
+@export var pad_pool: Pool = null
 
 const type: int = 0
 const PadPath: Resource = preload("res://src/objects/pad/pad.tscn")
 const min_size: float = 10.
 
-var state: States = States.MouseUp
-var pad_child: Pad = null
-var PadNode: Pad = null
-var a: Vector2
-var b: Vector2
-
 enum States {
 	MouseUp,
 	MouseDown,
 }
+
+var state: States = States.MouseUp
+var pad_child: Pad = null
+var PadNode: Pad = null
+
+var a: Vector2
+var b: Vector2
+
 
 func _init() -> void:
 	super()
@@ -59,21 +58,14 @@ func _unhandled_input(event) -> void:
 		pad_child = null
 		return
 	
-	# TODO: Fix/rework
+	# LTODO: Fix/rework
 	if (state == States.MouseUp &&
 		event is InputEventMouseButton && 
 		event.is_pressed() &&
 		event.button_index == MOUSE_BUTTON_RIGHT):
-		#var q := PhysicsPointQueryParameters2D.new()
-		#q.position = MouseObserver.get_mouse_pos()
-		#var w := World2D.new()
-		#var b = w.get_direct_space_state().intersect_point(q)
-		#print(b) #????
-		deleter.set_global_position(MouseObserver.get_mouse_pos())
-		var bs = deleter.get_overlapping_bodies()
-		var o = bs.front()
-		if o && o.get_parent() is Pad:
-			o.get_parent().destroy()
+		var b: Pad = _get_body_under_mouse(0x0001, Pad)
+		if b:
+			b.destroy()
 	
 func _process(delta) -> void:
 	if pad_child && state == States.MouseDown:

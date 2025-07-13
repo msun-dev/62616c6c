@@ -1,33 +1,30 @@
 [gd_scene load_steps=6 format=3 uid="uid://gbf8dkufhvh5"]
 
-[ext_resource type="Script" uid="uid://kv8brqffx4st" path="res://src/objects/pool/pool.gd" id="1_ddgln"]
 [ext_resource type="PackedScene" uid="uid://bh432qy4dpm2d" path="res://src/objects/tools/pad_generator/pad_generator.tscn" id="2_o6mgd"]
-[ext_resource type="PackedScene" uid="uid://c6nq3gi46mgpv" path="res://src/objects/tools/spawner_generator/spawner_generator.tscn" id="3_hngsk"]
+[ext_resource type="PackedScene" uid="uid://c6nq3gi46mgpv" path="res://src/objects/tools/emitter_generator/emitter_generator.tscn" id="3_hngsk"]
+[ext_resource type="PackedScene" uid="uid://vy150lxql47w" path="res://src/objects/pool/pool.tscn" id="5_rk71q"]
 [ext_resource type="PackedScene" uid="uid://dax8vvne87vkv" path="res://src/objects/tools/tool_holder/tool_holder.tscn" id="8_bqht4"]
 [ext_resource type="PackedScene" uid="uid://bgwehmfmb3oef" path="res://src/objects/UI/main_ui/ui.tscn" id="11_hngsk"]
 
 [node name="World" type="Node"]
 
 [node name="UI" parent="." instance=ExtResource("11_hngsk")]
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="ToolHolder" parent="." instance=ExtResource("8_bqht4")]
 
 [node name="PadGenerator" parent="ToolHolder" node_paths=PackedStringArray("pad_pool") instance=ExtResource("2_o6mgd")]
-debug_draw = true
 pad_pool = NodePath("../../Pools/PadPool")
 
-[node name="SpawnerGenerator" parent="ToolHolder" instance=ExtResource("3_hngsk")]
+[node name="SpawnerGenerator" parent="ToolHolder" node_paths=PackedStringArray("emitter_pool", "ball_pool") instance=ExtResource("3_hngsk")]
+emitter_pool = NodePath("../../Pools/EmitterPool")
+ball_pool = NodePath("../../Pools/BallPool")
 
 [node name="Pools" type="Node" parent="."]
 
-[node name="EmitterPool" type="Node" parent="Pools"]
-script = ExtResource("1_ddgln")
-metadata/_custom_type_script = "uid://kv8brqffx4st"
+[node name="EmitterPool" parent="Pools" instance=ExtResource("5_rk71q")]
 
-[node name="BallPool" type="Node" parent="Pools"]
-script = ExtResource("1_ddgln")
-metadata/_custom_type_script = "uid://kv8brqffx4st"
+[node name="BallPool" parent="Pools" instance=ExtResource("5_rk71q")]
 
-[node name="PadPool" type="Node" parent="Pools"]
-script = ExtResource("1_ddgln")
-metadata/_custom_type_script = "uid://kv8brqffx4st"
+[node name="PadPool" parent="Pools" instance=ExtResource("5_rk71q")]

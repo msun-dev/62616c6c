@@ -10,9 +10,12 @@ const ball_object = "res://src/objects/ball/ball.tscn"
 
 func _init(p: Pool = null) -> void:
 	if p:
-		ball_pool = p # TODO: Will break parameters export, probably
+		ball_pool = p # LTODO: Will break parameters export, probably
 	else:
 		pass
+
+func _draw() -> void:
+	draw_circle(Vector2.ZERO, 5, parameters.get_color(), false, 2)
 
 func _process(delta) -> void:
 	if parameters.is_disabled() || !timer:
@@ -23,15 +26,17 @@ func _process(delta) -> void:
 
 func update_position(p: Vector2) -> void:
 	parameters.set_position(p)
-	set_position(p)
+	set_global_position(p)
+
+func destroy() -> void:
+	queue_free()
 
 func emit_ball() -> void:
 	var ball: Ball = preload(ball_object).instantiate()
 	ball.parameters = BallResource.new()
 	ball.parameters.set_sample(parameters.get_sample_params())
-	ball.parameters.get_sample().initiate_sample() # TODO: Fix samples and remove
 	ball.parameters.set_color(parameters.get_color())
 	ball.set_global_position(get_global_position()) # yeah...
-	#ball.set_global_position(parameters.get_position())
+	ball.set_linear_velocity(Vector2(0, 1))
 	ball_pool.add_child(ball)
 	pass

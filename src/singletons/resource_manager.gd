@@ -13,11 +13,11 @@ func _ready() -> void:
 	get_window().files_dropped.connect(_on_files_dropped)
 
 # Getters/Setters
-# TODO: Add size check
+# LTODO: Add size check
 func set_sample(i: int) -> void:
 	selected_sample = i
 
-# TODO: Add size check
+# LTODO: Add size check
 func set_color(i: int) -> void:
 	selected_color = i
 
@@ -47,7 +47,8 @@ func get_random_color() -> Color:
 
 # Class methods
 func load_palette(image_path: String) -> void:
-	# TODO: Add size check so user dont kill his device with huge ass palette (is this a palette even?)
+	# LTODO: Add size check so user dont kill his device with huge ass palette 
+	# (is this a palette even?)
 	print_debug("Loading palette with given path: %s" % [image_path])
 	if !image_path:
 		return 
@@ -61,7 +62,7 @@ func load_palette(image_path: String) -> void:
 				palette.append(color)
 				GlobalSignalbus.emit_signal("ColorAdded", color, palette.size() - 1)
 	
-# TODO: Play sample when loading to fix first sound not playing
+# LTODO: Play sample when loading to fix first sound not playing
 func load_sound(sound_path: String) -> void:
 	print_debug("Loading sound with given path: %s" % [sound_path])
 	var sample := SampleResource.new()

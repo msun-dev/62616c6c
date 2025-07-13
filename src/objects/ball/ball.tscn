@@ -22,8 +22,10 @@ shape = SubResource("CircleShape2D_msskg")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

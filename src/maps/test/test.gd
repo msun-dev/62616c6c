@@ -6,6 +6,3 @@ func _ready():
 	ResourceManager.load_sound("res://assets/normal-hitclap.wav")
 
 	GlobalSignalbus.emit_signal("ToolSelected", 0)
-
-func _process(delta):
-	pass

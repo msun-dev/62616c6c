@@ -1,17 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh432qy4dpm2d"]
+[gd_scene load_steps=2 format=3 uid="uid://bh432qy4dpm2d"]
 
 [ext_resource type="Script" uid="uid://dm6edheigv0h3" path="res://src/objects/tools/pad_generator/pad_generator.gd" id="1_cvu5r"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cvu5r"]
-radius = 6.0
 
 [node name="PadGenerator" type="Node"]
 script = ExtResource("1_cvu5r")
 metadata/_custom_type_script = "uid://dydesinm1cvoj"
-
-[node name="Deleter" type="Area2D" parent="."]
-collision_layer = 0
-monitorable = false
-
-[node name="Shape" type="CollisionShape2D" parent="Deleter"]
-shape = SubResource("CircleShape2D_cvu5r")

@@ -1,18 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy6t0puuvrel"]
+[gd_scene load_steps=4 format=3 uid="uid://cy6t0puuvrel"]
 
 [ext_resource type="Script" uid="uid://b01i0gxppgxof" path="res://src/objects/pad/pad.gd" id="1_nxjbj"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_nxjbj"]
 resource_local_to_scene = true
-b = Vector2(100, 0)
+custom_solver_bias = 0.877
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxjbj"]
+resource_local_to_scene = true
+size = Vector2(10, 3)
 
 [node name="Pad" type="Node2D"]
 script = ExtResource("1_nxjbj")
 
-[node name="StaticBody" type="StaticBody2D" parent="."]
+[node name="Collision" type="StaticBody2D" parent="."]
 collision_mask = 2
 
-[node name="Shape" type="CollisionShape2D" parent="StaticBody"]
+[node name="Shape" type="CollisionShape2D" parent="Collision"]
 unique_name_in_owner = true
 shape = SubResource("SegmentShape2D_nxjbj")
 disabled = true
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="MouseShape" type="CollisionShape2D" parent="HitBox"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_nxjbj")

@@ -2,23 +2,30 @@
 I don't like that in order to get mouse position you have to
 create a node that inherits CanvasItem. So thats the solution
 I came up with. Probably you can come up with something better,
-but thats all I can do. :( 
+but thats all I can do. :(
 	
 Also there was like 4 vars in calculate_mouse_pos() but I decided
 to shrunk it a bit (to 1). Hope it decreases process time for a bit. 
+
+...
+
+(You can check out that abomination in git history!)
+
+And you can just use viewport and get mouse position from it. Simple! 
 '''
 
 extends Node
 
 var mouse_pos: Vector2i = Vector2i.ZERO
 
-func _process(delta):
+func _process(delta) -> void:
 	calculate_mouse_pos()
 
-# TODO: Fix so it gets position on the canvas instead of screen
 func calculate_mouse_pos() -> void:
-	var nmp: Vector2i = DisplayServer.mouse_get_position() - DisplayServer.window_get_position()
-	mouse_pos = nmp.clamp(Vector2i.ZERO, DisplayServer.window_get_size())
+	var vp := get_viewport()
+	if !vp:
+		return
+	mouse_pos = vp.get_mouse_position()
 
 func get_mouse_pos() -> Vector2i:
 	return mouse_pos
