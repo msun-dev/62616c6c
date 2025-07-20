@@ -5,11 +5,23 @@ extends Control
 
 var Preview: Resource = preload("res://src/objects/UI/preview/preview.tscn")
 
+# TODO:
+var tween_opacity: Tween
+
 func _ready():
 	GlobalSignalbus.SampleAdded.connect(_on_sample_added)
 	GlobalSignalbus.ColorAdded.connect(_on_color_added)
 	GlobalSignalbus.PreviewSelected.connect(_on_preview_selected)
 	#GlobalSignalbus.ToolSelected.connect(tool_select)
+	
+	# TODO: Ask resourcemanager for resources
+	var samples: Array[SampleResource] = ResourceManager.get_samples()
+	var palette: Array[Color] = ResourceManager.get_palette()
+	
+	for i in samples.size():
+		add_preview(0, samples[i], i)
+	for i in palette.size():
+		add_preview(1, palette[i], i)
 
 func add_preview(t: int, r: Variant, i: int) -> void:
 	var node: PreviewBoxSample = Preview.instantiate()
@@ -41,15 +53,15 @@ func add_preview(t: int, r: Variant, i: int) -> void:
 
 func tool_select(t: int) -> void:
 	match t:
-		0: #pad_generator
+		0: # pad_generator
 			samples_container.hide()
 			palette_container.show()
 			#misc_menu.hide()
-		1: #spawner_generator
+		1: # spawner_generator
 			samples_container.show()
 			palette_container.show()
 			#misc_menu.hide()
-		2: #misc menu
+		2: # misc menu
 			samples_container.hide()
 			palette_container.hide()
 			#misc_menu.show()

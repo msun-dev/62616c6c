@@ -58,7 +58,6 @@ func _unhandled_input(event) -> void:
 		pad_child = null
 		return
 	
-	# LTODO: Fix/rework
 	if (state == States.MouseUp &&
 		event is InputEventMouseButton && 
 		event.is_pressed() &&
@@ -71,9 +70,6 @@ func _process(delta) -> void:
 	if pad_child && state == States.MouseDown:
 		b = MouseObserver.get_mouse_pos()
 		pad_child.update_position(1, b)
-
-func _physics_process(delta) -> void:
-	pass
 
 func get_state() -> String:
 	return States.keys()[state]

@@ -1,18 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6nq3gi46mgpv"]
 
 [ext_resource type="Script" uid="uid://cn2my8kep3eff" path="res://src/objects/tools/emitter_generator/emitter_generator.gd" id="1_xfcby"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_djsb0"]
-radius = 5.0
+[ext_resource type="PackedScene" uid="uid://crp3y8ucntcf3" path="res://src/objects/tools/emitter_generator/circle_node.tscn" id="2_r055y"]
 
 [node name="EmitterGenerator" type="Node"]
 script = ExtResource("1_xfcby")
 icon_path = "res://src/objects/tools/spawner_generator/icon.png"
 metadata/_custom_type_script = "uid://dydesinm1cvoj"
 
-[node name="Deleter" type="Area2D" parent="."]
-unique_name_in_owner = true
-monitorable = false
-
-[node name="Shape" type="CollisionShape2D" parent="Deleter"]
-shape = SubResource("CircleShape2D_djsb0")
+[node name="CircleNode" parent="." instance=ExtResource("2_r055y")]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dah0wqfr78p7o"]
+
+[ext_resource type="Texture2D" uid="uid://die85nldpd2xb" path="res://src/objects/ball/particle.png" id="1_ocel5"]
+
+[sub_resource type="Curve" id="Curve_hw1hf"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.775281), -1.59008, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i87fs"]
+curve = SubResource("Curve_hw1hf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i87fs"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+damping_min = 67.293
+damping_max = 90.94
+scale_over_velocity_max = 100.0
+scale_over_velocity_curve = SubResource("CurveTexture_i87fs")
+
+[node name="ball_collision_particle" type="GPUParticles2D"]
+emitting = false
+amount = 16
+texture = ExtResource("1_ocel5")
+lifetime = 3.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.8
+process_material = SubResource("ParticleProcessMaterial_i87fs")

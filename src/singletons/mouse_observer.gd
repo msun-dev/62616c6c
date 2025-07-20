@@ -19,9 +19,9 @@ extends Node
 var mouse_pos: Vector2i = Vector2i.ZERO
 
 func _process(delta) -> void:
-	calculate_mouse_pos()
+	_calculate_mouse_pos()
 
-func calculate_mouse_pos() -> void:
+func _calculate_mouse_pos() -> void:
 	var vp := get_viewport()
 	if !vp:
 		return

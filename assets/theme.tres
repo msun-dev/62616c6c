@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ciofj0omck83g"]
+
+[ext_resource type="FontFile" uid="uid://cr76q6cbvx3bt" path="res://assets/fonts/VeraMono.ttf" id="1_5x3i2"]
+
+[resource]
+Button/styles/pressed = null
+Label/colors/font_color = Color(0.152941, 0.137255, 0.298039, 1)
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_5x3i2")

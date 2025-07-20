@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2ilyt3d1h4xq"
-path="res://.godot/imported/audio-sprite.png-228e7ab95ce09fdc47e226e026f8ede9.ctex"
+uid="uid://l7ik88h41nac"
+path="res://.godot/imported/mushfairy-1x.png-39370964dff0aa88e4af2902a250deda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/audio-sprite.png"
-dest_files=["res://.godot/imported/audio-sprite.png-228e7ab95ce09fdc47e226e026f8ede9.ctex"]
+source_file="res://assets/palette/mushfairy-1x.png"
+dest_files=["res://.godot/imported/mushfairy-1x.png-39370964dff0aa88e4af2902a250deda.ctex"]
 
 [params]
 

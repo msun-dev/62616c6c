@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cg7rv8usddpp5"
-path="res://.godot/imported/bass-dry.wav-0316f212c3085abd4dcb961b5d3b92ec.sample"
+uid="uid://m5oleuupxk57"
+path="res://.godot/imported/SnareDrum3.wav-b2d6d3f87d37662e16a38c97723865f1.sample"
 
 [deps]
 
-source_file="res://assets/bass-dry.wav"
-dest_files=["res://.godot/imported/bass-dry.wav-0316f212c3085abd4dcb961b5d3b92ec.sample"]
+source_file="res://assets/samples/SnareDrum3.wav"
+dest_files=["res://.godot/imported/SnareDrum3.wav-b2d6d3f87d37662e16a38c97723865f1.sample"]
 
 [params]
 

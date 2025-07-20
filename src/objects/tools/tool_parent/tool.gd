@@ -36,7 +36,9 @@ func _get_body_under_mouse(mask: int, type: Variant) -> Variant:
 	'''
 
 func set_disabled(d: bool) -> void:
-	disabled = d 
+	disabled = d
+	#set_process(d)
+	#set_process_input(d)
 
 func is_disabled() -> bool:
 	return disabled

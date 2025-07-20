@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwkbnly0vnw1j"]
+[gd_scene load_steps=6 format=3 uid="uid://cwkbnly0vnw1j"]
 
-[ext_resource type="FontFile" uid="uid://cr76q6cbvx3bt" path="res://assets/VeraMono.ttf" id="1_4qr5g"]
+[ext_resource type="FontFile" uid="uid://cr76q6cbvx3bt" path="res://assets/fonts/VeraMono.ttf" id="1_4qr5g"]
 [ext_resource type="Script" uid="uid://gho824rb1wrf" path="res://src/objects/UI/preview/preview.gd" id="1_a0fpi"]
+[ext_resource type="Theme" uid="uid://ciofj0omck83g" path="res://assets/theme.tres" id="2_a0fpi"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6xg6n"]
 size = Vector2(60, 34)
@@ -40,7 +41,7 @@ theme_override_constants/margin_bottom = 1
 [node name="BackgroundRect" type="ColorRect" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-color = Color(0.374139, 0.374139, 0.374139, 1)
+color = Color(0, 0.458824, 0.509804, 1)
 
 [node name="VContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -76,6 +77,8 @@ theme_override_constants/margin_bottom = 0
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
+theme = ExtResource("2_a0fpi")
+theme_override_colors/font_color = Color(0.866667, 0.894118, 1, 1)
 theme_override_fonts/font = ExtResource("1_4qr5g")
 theme_override_font_sizes/font_size = 10
 text = "1234567890"

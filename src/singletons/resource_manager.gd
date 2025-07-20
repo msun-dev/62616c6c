@@ -11,6 +11,14 @@ var selected_sample: int = -1
 
 func _ready() -> void:
 	get_window().files_dropped.connect(_on_files_dropped)
+	
+	load_palette("res://assets/palette/mushfairy-1x.png")
+	load_sound("res://assets/samples/HiHat.wav")
+	load_sound("res://assets/samples/KickDrum.wav")
+	load_sound("res://assets/samples/SnareDrum1.wav")
+	load_sound("res://assets/samples/SnareDrum2.wav")
+	load_sound("res://assets/samples/SnareDrum3.wav")
+	load_sound("res://assets/samples/SnareDrum4.wav")
 
 # Getters/Setters
 # LTODO: Add size check
@@ -45,14 +53,18 @@ func get_random_sample() -> SampleResource:
 func get_random_color() -> Color:
 	return palette.pick_random() if palette.size() > 0 else null
 
+func are_both_selected() -> bool:
+	return selected_sample > -1 && selected_color > -1
+
 # Class methods
 func load_palette(image_path: String) -> void:
 	# LTODO: Add size check so user dont kill his device with huge ass palette 
 	# (is this a palette even?)
-	print_debug("Loading palette with given path: %s" % [image_path])
-	if !image_path:
-		return 
 	var image: Image = Image.load_from_file(image_path)
+	if !image:
+		printerr("Image load failed.")
+		return
+	print_debug("Loading palette with given path: %s" % [image_path])
 	var size: Vector2i = image.get_size()
 	palette = []
 	for x in size.x:
@@ -64,6 +76,7 @@ func load_palette(image_path: String) -> void:
 	
 # LTODO: Play sample when loading to fix first sound not playing
 func load_sound(sound_path: String) -> void:
+	# TODO: Add sound check
 	print_debug("Loading sound with given path: %s" % [sound_path])
 	var sample := SampleResource.new()
 	sample.set_sample_path(sound_path)

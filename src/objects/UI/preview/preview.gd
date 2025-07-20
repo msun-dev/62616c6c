@@ -1,8 +1,8 @@
 class_name PreviewBoxSample
 extends MarginContainer
 
-const toggle_color: String = "#919191"
-const untoggle_color: String = "#5f5f5f"
+const toggle_color: String = "#39b8a3"
+const untoggle_color: String = "#007582"
 const label_length: int = 10
 
 @onready var image: TextureRect = %Image

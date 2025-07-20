@@ -1,10 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://n20e8qfob6ed"]
+[gd_scene load_steps=9 format=3 uid="uid://n20e8qfob6ed"]
 
 [ext_resource type="Script" uid="uid://7xralue40qb8" path="res://src/objects/ball/ball.gd" id="1_f38mf"]
+[ext_resource type="PackedScene" uid="uid://dah0wqfr78p7o" path="res://src/objects/ball/ball_collision_particle.tscn" id="2_hw1hf"]
+[ext_resource type="Texture2D" uid="uid://die85nldpd2xb" path="res://src/objects/ball/particle.png" id="3_i87fs"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f38mf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_msskg"]
+
+[sub_resource type="Curve" id="Curve_i87fs"]
+_data = [Vector2(0, 1), 0.0, -1.30601, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qxtw2"]
+curve = SubResource("Curve_i87fs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qxtw2"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_qxtw2")
 
 [node name="Ball" type="RigidBody2D"]
 collision_layer = 2
@@ -13,6 +29,7 @@ continuous_cd = 1
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_f38mf")
+collision_particle = ExtResource("2_hw1hf")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_msskg")
@@ -25,6 +42,11 @@ one_shot = true
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Trail" type="GPUParticles2D" parent="."]
+texture = ExtResource("3_i87fs")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_qxtw2")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

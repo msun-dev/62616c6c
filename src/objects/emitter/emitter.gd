@@ -3,10 +3,10 @@ extends Marker2D
 
 @onready var timer: Timer = %Timer
 
-const ball_object = "res://src/objects/ball/ball.tscn"
-
 @export var parameters: EmitterResource
 @export var ball_pool: Pool
+
+const ball_object = "res://src/objects/ball/ball.tscn"
 
 func _init(p: Pool = null) -> void:
 	if p:
@@ -16,8 +16,14 @@ func _init(p: Pool = null) -> void:
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, 5, parameters.get_color(), false, 2)
+	draw_circle(
+		Vector2.ZERO, 
+		(parameters.get_cooldown() - timer.get_time_left()) / parameters.get_cooldown() * 5,
+		parameters.get_color()
+	)
 
 func _process(delta) -> void:
+	queue_redraw()
 	if parameters.is_disabled() || !timer:
 		return
 	if timer.is_stopped():

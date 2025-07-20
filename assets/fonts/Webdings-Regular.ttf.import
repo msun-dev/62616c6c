@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cr76q6cbvx3bt"
-path="res://.godot/imported/VeraMono.ttf-d0ed73c30aa5476bf1b3c6c06131a988.fontdata"
+uid="uid://cosrngrkoi3bm"
+path="res://.godot/imported/Webdings-Regular.ttf-e1755d19d3c108079c36e335d997b3a9.fontdata"
 
 [deps]
 
-source_file="res://assets/VeraMono.ttf"
-dest_files=["res://.godot/imported/VeraMono.ttf-d0ed73c30aa5476bf1b3c6c06131a988.fontdata"]
+source_file="res://assets/fonts/Webdings-Regular.ttf"
+dest_files=["res://.godot/imported/Webdings-Regular.ttf-e1755d19d3c108079c36e335d997b3a9.fontdata"]
 
 [params]
 
@@ -21,9 +21,9 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
-hinting=2
-subpixel_positioning=0
-keep_rounding_remainders=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null
 fallbacks=[]
@@ -33,8 +33,7 @@ preload=[{
 "chars": [],
 "glyphs": [],
 "name": "New Configuration",
-"size": Vector2i(16, 0),
-&"variation_embolden": 0.0
+"size": Vector2i(16, 0)
 }]
 language_support={}
 script_support={}

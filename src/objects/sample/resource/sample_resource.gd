@@ -13,13 +13,8 @@ func _init() -> void:
 	initiate_sample()
 
 func initiate_sample() -> void:
-	label = sample_path.get_file() #str(sample_path.hash() % 1000000)
-	preload_sample()
-
-func preload_sample() -> void:
-	#if !sample_path:
-		#printerr("Tried to preload sample with no sample_path!")
-		#return
+	# TODO: Add filepath check
+	label = sample_path.get_file()
 	match sample_path.get_extension():
 		"wav":
 			stream = AudioStreamWAV.load_from_file(sample_path)

@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://ga0tx3ryss4w"
-path="res://.godot/imported/hit_fast.wav-00cd8ea0d37874fb45581a94d9852962.sample"
+uid="uid://bx7roiw0uqjyt"
+path="res://.godot/imported/KickDrum.wav-237a58eada2fec61af636c7f5c8f77df.sample"
 
 [deps]
 
-source_file="res://assets/hit_fast.wav"
-dest_files=["res://.godot/imported/hit_fast.wav-00cd8ea0d37874fb45581a94d9852962.sample"]
+source_file="res://assets/samples/KickDrum.wav"
+dest_files=["res://.godot/imported/KickDrum.wav-237a58eada2fec61af636c7f5c8f77df.sample"]
 
 [params]
 
