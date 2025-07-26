@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://n20e8qfob6ed"]
+[gd_scene load_steps=12 format=3 uid="uid://n20e8qfob6ed"]
 
 [ext_resource type="Script" uid="uid://7xralue40qb8" path="res://src/objects/ball/ball.gd" id="1_f38mf"]
 [ext_resource type="PackedScene" uid="uid://dah0wqfr78p7o" path="res://src/objects/ball/ball_collision_particle.tscn" id="2_hw1hf"]
@@ -22,6 +22,28 @@ scale_min = 0.8
 scale_max = 0.8
 scale_curve = SubResource("CurveTexture_qxtw2")
 
+[sub_resource type="Curve" id="Curve_hw1hf"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.775281), -1.59008, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i87fs"]
+curve = SubResource("Curve_hw1hf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i87fs"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+damping_min = 67.293
+damping_max = 90.94
+scale_over_velocity_max = 100.0
+scale_over_velocity_curve = SubResource("CurveTexture_i87fs")
+
 [node name="Ball" type="RigidBody2D"]
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_f38mf")
@@ -29,7 +51,6 @@ continuous_cd = 1
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_f38mf")
-collision_particle = ExtResource("2_hw1hf")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_msskg")
@@ -47,6 +68,9 @@ one_shot = true
 texture = ExtResource("3_i87fs")
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_qxtw2")
+
+[node name="ParticleDeath" parent="." instance=ExtResource("2_hw1hf")]
+process_material = SubResource("ParticleProcessMaterial_i87fs")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

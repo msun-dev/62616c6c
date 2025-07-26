@@ -2,15 +2,14 @@
 
 [ext_resource type="Script" uid="uid://icmlvhk0e8lf" path="res://src/objects/UI/main_ui/ui.gd" id="1_qra4r"]
 [ext_resource type="Texture2D" uid="uid://diqgkqxnrmplq" path="res://src/objects/tools/pad_generator/icon.png" id="2_esn7r"]
-[ext_resource type="Script" uid="uid://k3acx8vrn5ci" path="res://src/objects/UI/main_ui/debug_info.gd" id="3_esn7r"]
 [ext_resource type="Texture2D" uid="uid://co8y6aekmeo6x" path="res://src/objects/tools/emitter_generator/icon.png" id="3_hi45p"]
-[ext_resource type="FontFile" uid="uid://cosrngrkoi3bm" path="res://assets/fonts/Webdings-Regular.ttf" id="5_b8vhf"]
 [ext_resource type="Theme" uid="uid://ciofj0omck83g" path="res://assets/theme.tres" id="5_h4vsp"]
+[ext_resource type="Texture2D" uid="uid://duv64542pvk67" path="res://src/objects/UI/tool_button/nuke.png" id="5_pboug"]
+[ext_resource type="FontFile" uid="uid://cd43eom3diqvw" path="res://assets/fonts/freedings.ttf" id="6_h4vsp"]
 
 [sub_resource type="Theme" id="Theme_8mm7w"]
 
 [node name="UI" type="Control"]
-top_level = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,19 +21,18 @@ script = ExtResource("1_qra4r")
 
 [node name="ToolsContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -16.5
-offset_right = 16.5
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 33.0
 grow_horizontal = 2
+alignment = 1
 
 [node name="Pad" type="MarginContainer" parent="ToolsContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="Button-0" type="Button" parent="ToolsContainer/Pad"]
+[node name="ButtonPad" type="Button" parent="ToolsContainer/Pad"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_h4vsp")
 theme_type_variation = &"FlatButton"
@@ -46,7 +44,8 @@ icon_alignment = 1
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="Button-1" type="Button" parent="ToolsContainer/Emitter"]
+[node name="ButtonEmitter" type="Button" parent="ToolsContainer/Emitter"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_h4vsp")
 theme_type_variation = &"FlatButton"
@@ -54,14 +53,30 @@ icon = ExtResource("3_hi45p")
 flat = true
 icon_alignment = 1
 
+[node name="Nuke" type="MarginContainer" parent="ToolsContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="ButtonNuke" type="Button" parent="ToolsContainer/Nuke"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_h4vsp")
+theme_type_variation = &"FlatButton"
+icon = ExtResource("5_pboug")
+flat = true
+icon_alignment = 1
+
 [node name="SampleScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -223.0
-offset_right = 65.0
-offset_bottom = 224.0
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.746
+anchor_right = 1.0
+anchor_bottom = 0.746
+offset_left = -65.0
+offset_top = -99.952
+offset_bottom = 100.048
+grow_horizontal = 0
 grow_vertical = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
@@ -76,14 +91,14 @@ alignment = 1
 
 [node name="PaletteScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = -1
 anchor_left = 1.0
-anchor_top = 0.5
+anchor_top = 0.279
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 0.279
 offset_left = -65.0
-offset_top = -223.0
-offset_bottom = 224.0
+offset_top = -99.848
+offset_bottom = 100.152
 grow_horizontal = 0
 grow_vertical = 2
 theme = SubResource("Theme_8mm7w")
@@ -103,19 +118,51 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
 grow_vertical = 0
-script = ExtResource("3_esn7r")
+mouse_filter = 1
 
-[node name="mouse_pos" type="Label" parent="debug_info"]
+[node name="VBoxContainer" type="VBoxContainer" parent="debug_info"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 39.0
+grow_vertical = 0
+pivot_offset = Vector2(55, 55)
+
+[node name="BallAmount" type="Label" parent="debug_info/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 2
 theme = ExtResource("5_h4vsp")
-theme_override_fonts/font = ExtResource("5_b8vhf")
+theme_override_fonts/font = ExtResource("6_h4vsp")
+theme_override_font_sizes/font_size = 14
 text = "---"
 
-[connection signal="pressed" from="ToolsContainer/Pad/Button-0" to="." method="_on_button_pressed" binds= [0]]
-[connection signal="pressed" from="ToolsContainer/Emitter/Button-1" to="." method="_on_button_pressed" binds= [1]]
+[node name="PadAmount" type="Label" parent="debug_info/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_h4vsp")
+theme_override_fonts/font = ExtResource("6_h4vsp")
+theme_override_font_sizes/font_size = 14
+text = "---"
+
+[node name="EmitterAmount" type="Label" parent="debug_info/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_h4vsp")
+theme_override_fonts/font = ExtResource("6_h4vsp")
+theme_override_font_sizes/font_size = 14
+text = "---"
+
+[node name="MousePos" type="Label" parent="debug_info/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_h4vsp")
+theme_override_fonts/font = ExtResource("6_h4vsp")
+theme_override_font_sizes/font_size = 14
+text = "---"
+
+[node name="OpacityTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="OpacityTimer" to="." method="_on_opacity_timer_timeout"]

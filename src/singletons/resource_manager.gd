@@ -12,13 +12,84 @@ var selected_sample: int = -1
 func _ready() -> void:
 	get_window().files_dropped.connect(_on_files_dropped)
 	
-	load_palette("res://assets/palette/mushfairy-1x.png")
-	load_sound("res://assets/samples/HiHat.wav")
-	load_sound("res://assets/samples/KickDrum.wav")
-	load_sound("res://assets/samples/SnareDrum1.wav")
-	load_sound("res://assets/samples/SnareDrum2.wav")
-	load_sound("res://assets/samples/SnareDrum3.wav")
-	load_sound("res://assets/samples/SnareDrum4.wav")
+	#load_palette("res://assets/palette/mushfairy-1x.png")
+	
+	_load_color(Color.from_string("#27234c", Color.DEEP_PINK))
+	_load_color(Color.from_string("#733c7c", Color.DEEP_PINK))
+	_load_color(Color.from_string("#b296ff", Color.DEEP_PINK))
+	_load_color(Color.from_string("#d3d37c", Color.DEEP_PINK))
+	_load_color(Color.from_string("#e88dc3", Color.DEEP_PINK))
+	_load_color(Color.from_string("#f2504b", Color.DEEP_PINK))
+	_load_color(Color.from_string("#225091", Color.DEEP_PINK))
+	
+	load_sample("res://assets/samples/HiHat.wav")
+	load_sample("res://assets/samples/KickDrum.wav")
+	load_sample("res://assets/samples/SnareDrum1.wav")
+	load_sample("res://assets/samples/SnareDrum2.wav")
+	load_sample("res://assets/samples/SnareDrum3.wav")
+	load_sample("res://assets/samples/SnareDrum4.wav")
+
+func _on_files_dropped(files) -> void:
+	for file in files:
+		var ext: StringName = file.get_extension()
+		if ext in sounds_ext:
+			load_sample(file)
+		elif ext in image_ext:
+			load_palette(file)
+		else:
+			printerr("The heck you dropped")
+
+func load_palette(image_path: String) -> void:
+	# LTODO: Add size check so user dont kill his device with huge ass palette 
+	# (is this a palette even?)
+	var image: Image = Image.load_from_file(image_path)
+	if !image:
+		printerr("Image load failed.")
+		return
+	print_debug("Loading palette with given path: %s" % [image_path])
+	var size: Vector2i = image.get_size()
+	palette = []
+	for x in size.x:
+		for y in size.y:
+			var color: Color = image.get_pixel(x, y)
+			if color != Color.BLACK && !palette.has(color):
+				palette.append(color)
+				GlobalSignalbus.emit_signal("ColorAdded", color, palette.size() - 1)
+
+func load_sample(sound_path: String) -> void:
+	# TODO: Add sound check. There isnt one so it adds empty samples.
+	print_debug("Loading sound with given path: %s" % [sound_path])
+	var sample := SampleResource.new()
+	sample.set_sample_path(sound_path)
+	sample.initiate_sample()
+	samples.append(sample)
+	GlobalSignalbus.emit_signal("SampleAdded", samples.back(), samples.size() - 1)
+
+func _load_color(c: Color) -> void:
+	#HACK
+	palette.append(c)
+	GlobalSignalbus.emit_signal("ColorAdded", c, palette.size() - 1)
+
+func remove_resource(t: int, i: int) -> void:
+	match t:
+		0:
+			samples.remove_at(i)
+			if i == selected_sample:
+				selected_sample = -1
+		1:
+			palette.remove_at(i)
+			if i == selected_color:
+				selected_color = -1
+	GlobalSignalbus.ResourceRemoved.emit(t, i)
+	print_debug("Resource removed: type: %i, index: %i" % [t, i])
+
+func save_data() -> void:
+	# TODO: Implement
+	pass
+
+func load_data() -> void:
+	# TODO: Implement
+	pass
 
 # Getters/Setters
 # LTODO: Add size check
@@ -55,50 +126,3 @@ func get_random_color() -> Color:
 
 func are_both_selected() -> bool:
 	return selected_sample > -1 && selected_color > -1
-
-# Class methods
-func load_palette(image_path: String) -> void:
-	# LTODO: Add size check so user dont kill his device with huge ass palette 
-	# (is this a palette even?)
-	var image: Image = Image.load_from_file(image_path)
-	if !image:
-		printerr("Image load failed.")
-		return
-	print_debug("Loading palette with given path: %s" % [image_path])
-	var size: Vector2i = image.get_size()
-	palette = []
-	for x in size.x:
-		for y in size.y:
-			var color: Color = image.get_pixel(x, y)
-			if color != Color.BLACK && !palette.has(color):
-				palette.append(color)
-				GlobalSignalbus.emit_signal("ColorAdded", color, palette.size() - 1)
-	
-# LTODO: Play sample when loading to fix first sound not playing
-func load_sound(sound_path: String) -> void:
-	# TODO: Add sound check
-	print_debug("Loading sound with given path: %s" % [sound_path])
-	var sample := SampleResource.new()
-	sample.set_sample_path(sound_path)
-	sample.initiate_sample()
-	samples.append(sample)
-	GlobalSignalbus.emit_signal("SampleAdded", samples.back(), samples.size() - 1)
-
-func save_data() -> void:
-	# TODO: Implement
-	pass
-
-func load_data() -> void:
-	# TODO: Implement
-	pass
-
-# SIGNALS
-func _on_files_dropped(files) -> void:
-	for file in files:
-		var ext: StringName = file.get_extension()
-		if ext in sounds_ext:
-			load_sound(file)
-		elif ext in image_ext:
-			load_palette(file)
-		else:
-			printerr("The heck you dropped")

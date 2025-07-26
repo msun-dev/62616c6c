@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ch6kw7ejdbflk"]
+[gd_scene load_steps=4 format=3 uid="uid://ch6kw7ejdbflk"]
 
 [ext_resource type="Script" uid="uid://bpsk054ljoj6v" path="res://src/objects/emitter/emitter.gd" id="1_7dk3m"]
+[ext_resource type="PackedScene" uid="uid://0ue0ycyggmv" path="res://src/objects/emitter/particle_death.tscn" id="2_5rfbd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dk3m"]
 radius = 5.0
@@ -18,3 +19,5 @@ shape = SubResource("CircleShape2D_7dk3m")
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="ParticeDeath" parent="." instance=ExtResource("2_5rfbd")]

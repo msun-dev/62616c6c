@@ -1,29 +1,29 @@
-'''
-Honestly, I still don't understand resources
-'''
-
+#Honestly, I still don't understand resources
 class_name SampleResource
 extends Resource
 
 @export var sample_path: String
 @export var label: String
-var stream: AudioStream
 
-func _init() -> void:
-	initiate_sample()
+var stream: Resource = null
 
-func initiate_sample() -> void:
+func initiate_sample() -> bool:
 	# TODO: Add filepath check
+	# NB: Use load() instead of load_from_file() to runtime load files in res:// dir.
 	label = sample_path.get_file()
 	match sample_path.get_extension():
 		"wav":
-			stream = AudioStreamWAV.load_from_file(sample_path)
+			stream = load(sample_path)
+			return true
 		"mp3":
-			stream = AudioStreamMP3.load_from_file(sample_path)
+			stream = load(sample_path)
+			return true
 		"ogg":
-			stream = AudioStreamOggVorbis.load_from_file(sample_path)
+			stream = load(sample_path)
+			return true
 		_:
 			printerr("No way this extension is here! (%s)" % [sample_path])
+			return false
 
 func instance() -> AudioStreamPlayback:
 	return stream.instantiate_playback()

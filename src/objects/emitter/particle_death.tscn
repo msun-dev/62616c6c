@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://0ue0ycyggmv"]
+
+[ext_resource type="Texture2D" uid="uid://ccs3mswk231o5" path="res://src/objects/emitter/particle.png" id="1_wsldt"]
+
+[sub_resource type="Curve" id="Curve_077dx"]
+_data = [Vector2(0, 1), 0.0, 0.025618, 0, 0, Vector2(1, 0), -1.76676, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o2pq2"]
+curve = SubResource("Curve_077dx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fsmco"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 35.0
+initial_velocity_max = 65.0
+gravity = Vector3(0, 15, 0)
+linear_accel_min = -48.87
+linear_accel_max = -26.32
+alpha_curve = SubResource("CurveTexture_o2pq2")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+emitting = false
+amount = 12
+texture = ExtResource("1_wsldt")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fsmco")

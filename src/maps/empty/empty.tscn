@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://gbf8dkufhvh5"]
+[gd_scene load_steps=7 format=3 uid="uid://gbf8dkufhvh5"]
 
+[ext_resource type="Script" uid="uid://bscgu0mghc753" path="res://src/maps/empty/world.gd" id="1_v7170"]
 [ext_resource type="PackedScene" uid="uid://bh432qy4dpm2d" path="res://src/objects/tools/pad_generator/pad_generator.tscn" id="2_o6mgd"]
 [ext_resource type="PackedScene" uid="uid://c6nq3gi46mgpv" path="res://src/objects/tools/emitter_generator/emitter_generator.tscn" id="3_hngsk"]
 [ext_resource type="PackedScene" uid="uid://vy150lxql47w" path="res://src/objects/pool/pool.tscn" id="5_rk71q"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bgwehmfmb3oef" path="res://src/objects/UI/main_ui/ui.tscn" id="11_hngsk"]
 
 [node name="World" type="Node"]
+script = ExtResource("1_v7170")
 
 [node name="UI" parent="." instance=ExtResource("11_hngsk")]
 size_flags_horizontal = 3

@@ -26,7 +26,7 @@ scale_over_velocity_curve = SubResource("CurveTexture_i87fs")
 
 [node name="ball_collision_particle" type="GPUParticles2D"]
 emitting = false
-amount = 16
+amount = 12
 texture = ExtResource("1_ocel5")
 lifetime = 3.5
 one_shot = true

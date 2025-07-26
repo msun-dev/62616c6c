@@ -5,24 +5,27 @@ extends RigidBody2D
 @onready var timer: Timer = $Timer
 @onready var death_timer: Timer = $DeathTimer
 @onready var trail_particle: GPUParticles2D = $Trail
-
-@export var collision_particle: PackedScene
+@onready var particle_death: GPUParticles2D = $ParticleDeath
+@onready var collision_particle: PackedScene = preload("res://src/objects/ball/ball_collision_particle.tscn")
 
 var parameters: BallResource
 var contact_pos := Vector2.ZERO
+var dead := false
 
 func _ready() -> void:
 	if !parameters:
 		#queue_free()
 		return
-	await ready
 	collision.get_shape().set_radius(parameters.get_radius())
 	get_physics_material_override().set_bounce(parameters.get_bounciness())
-	var trail_modulate: Color = parameters.get_color()
-	trail_modulate.a = 0.5
-	trail_particle.set_modulate(trail_modulate)
+	var color: Color = parameters.get_color()
+	particle_death.set_modulate(color)
+	color.a = 0.5
+	trail_particle.set_modulate(color)
 
 func _integrate_forces(state) -> void:
+	# First created ball doesnt emit any contact points for some reasons.
+	#TODO: fix!
 	var contact_point = state.get_contact_collider_position(0)
 	if contact_point:
 		contact_pos = contact_point
@@ -33,7 +36,8 @@ func _draw() -> void:
 	if !parameters:
 		queue_free()
 		return
-		
+	if dead:
+		return
 	draw_circle(
 		Vector2.ZERO,
 		parameters.get_radius(),
@@ -42,7 +46,7 @@ func _draw() -> void:
 
 func _physics_process(delta) -> void:
 	if get_linear_velocity() == Vector2.ZERO:
-		die()
+		destroy()
 
 func _create_collision_particle() -> void:
 	var sc = preload("res://src/objects/ball/ball_collision_particle.tscn")
@@ -71,7 +75,16 @@ func _on_body_entered(body) -> void:
 	timer.start(parameters.get_sample_cd())
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
-func die() -> void:
+func destroy() -> void:
+	if dead:
+		return
+	
+	dead = true
+	queue_redraw()
+	trail_particle.set_emitting(false)
+	particle_death.restart()
+	await particle_death.finished
 	queue_free()

@@ -2,11 +2,14 @@ class_name Emitter
 extends Marker2D
 
 @onready var timer: Timer = %Timer
+@onready var particle_death: GPUParticles2D = $ParticeDeath
 
 @export var parameters: EmitterResource
 @export var ball_pool: Pool
 
 const ball_object = "res://src/objects/ball/ball.tscn"
+
+var dead: bool = false
 
 func _init(p: Pool = null) -> void:
 	if p:
@@ -14,13 +17,19 @@ func _init(p: Pool = null) -> void:
 	else:
 		pass
 
+func _ready() -> void:
+	var c: Color = parameters.get_color()
+	c.a = 0.25
+	particle_death.set_modulate(parameters.get_color())
+
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, 5, parameters.get_color(), false, 2)
-	draw_circle(
-		Vector2.ZERO, 
-		(parameters.get_cooldown() - timer.get_time_left()) / parameters.get_cooldown() * 5,
-		parameters.get_color()
-	)
+	if !parameters.is_disabled():
+		draw_circle(Vector2.ZERO, 5, parameters.get_color(), false, 2)
+		draw_circle(
+			Vector2.ZERO, 
+			(parameters.get_cooldown() - timer.get_time_left()) / parameters.get_cooldown() * 5,
+			parameters.get_color()
+		)
 
 func _process(delta) -> void:
 	queue_redraw()
@@ -35,6 +44,12 @@ func update_position(p: Vector2) -> void:
 	set_global_position(p)
 
 func destroy() -> void:
+	if dead:
+		return
+	dead = true
+	parameters.set_disabled(true)
+	particle_death.set_emitting(true)
+	await particle_death.finished
 	queue_free()
 
 func emit_ball() -> void:

@@ -3,4 +3,7 @@ extends Node
 
 func clear() -> void:
 	for obj in self.get_children():
-		obj.queue_free()
+		obj.destroy()
+
+func get_amount() -> int:
+	return get_child_count()

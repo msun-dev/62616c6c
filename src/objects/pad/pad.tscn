@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy6t0puuvrel"]
+[gd_scene load_steps=5 format=3 uid="uid://cy6t0puuvrel"]
 
 [ext_resource type="Script" uid="uid://b01i0gxppgxof" path="res://src/objects/pad/pad.gd" id="1_nxjbj"]
+[ext_resource type="PackedScene" uid="uid://dtav50c6yd1js" path="res://src/objects/pad/particle_death.tscn" id="2_r6y74"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_nxjbj"]
 resource_local_to_scene = true
@@ -26,3 +27,5 @@ disabled = true
 [node name="MouseShape" type="CollisionShape2D" parent="HitBox"]
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_nxjbj")
+
+[node name="ParticleDeath" parent="." instance=ExtResource("2_r6y74")]

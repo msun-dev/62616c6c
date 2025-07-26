@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cosrngrkoi3bm"
-path="res://.godot/imported/Webdings-Regular.ttf-e1755d19d3c108079c36e335d997b3a9.fontdata"
+uid="uid://cd43eom3diqvw"
+path="res://.godot/imported/freedings.ttf-492b31c3d70810024a62660303af2c5a.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Webdings-Regular.ttf"
-dest_files=["res://.godot/imported/Webdings-Regular.ttf-e1755d19d3c108079c36e335d997b3a9.fontdata"]
+source_file="res://assets/fonts/freedings.ttf"
+dest_files=["res://.godot/imported/freedings.ttf-492b31c3d70810024a62660303af2c5a.fontdata"]
 
 [params]
 
@@ -21,7 +21,7 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
-hinting=1
+hinting=0
 subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
