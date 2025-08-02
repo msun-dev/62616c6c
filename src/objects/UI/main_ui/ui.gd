@@ -54,14 +54,14 @@ func _create_opacity_tween() -> void:
 	tween_opacity.tween_property(self, "modulate:a", 0.0, opacity_shift_duration)
 
 func _add_sample_preview(t: int, r: SampleResource, i: int) -> void:
-	var node = SamplePreview.instantiate()
-	node = SamplePreview.instantiate()
-	%SamplesVContainer.add_child(node)
-	node.set_type(t)
-	node.set_index(i)
-	node.set_text(r.get_label())
-	node.button.pressed.connect(_on_preview_selected.bind(node))
-
+	var preview = SamplePreview.instantiate()
+	preview = SamplePreview.instantiate()
+	%SamplesVContainer.add_child(preview)
+	preview.set_type(t)
+	preview.set_index(i)
+	preview.set_text(r.get_label())
+	preview.set_ui(self)
+		
 func _add_color_preview(t: int, r: Color, i: int) -> void:
 	'''
 	Thats the thing I came up with...
@@ -70,18 +70,18 @@ func _add_color_preview(t: int, r: Color, i: int) -> void:
 	But I already done it this way. 1D gradient is too small and doesnt scale along y-axis,
 	so I used a 2D gradient instead. Silly stuff!
 	'''
-	var node = ColorPreview.instantiate()
-	node.set_type(t)
-	node.set_index(i)
+	var preview = ColorPreview.instantiate()
+	preview.set_type(t)
+	preview.set_index(i)
 	var g := GradientTexture2D.new()
 	var gt := Gradient.new()
 	gt.add_point(0., r)
 	gt.remove_point(1)
 	g.set_gradient(gt)
-	%PaletteVContainer.add_child(node)
-	node.set_image(g)
-	node.set_text("0x" + r.to_html(false).to_upper())
-	node.button.pressed.connect(_on_preview_selected.bind(node))
+	%PaletteVContainer.add_child(preview)
+	preview.set_image(g)
+	preview.set_text("0x" + r.to_html(false).to_upper())
+	preview.set_ui(self)
 
 # Signals
 func _on_sample_added(s: SampleResource, i: int) -> void:
@@ -89,21 +89,6 @@ func _on_sample_added(s: SampleResource, i: int) -> void:
 
 func _on_color_added(c: Color, i: int) -> void:
 	add_preview(1, c, i)
-
-func _on_preview_selected(n: PreviewBox) -> void:
-	match n.get_type():
-		0:
-			for c in samples_container.get_children():
-				c.unselect()
-			n.select()
-			ResourceManager.set_sample(n.get_i())
-		1:
-			for c in palette_container.get_children():
-				c.unselect()
-			n.select()
-			ResourceManager.set_color(n.get_i())
-		_:
-			printerr("Wrong type provided on preview_selected signal.")
 
 func _on_tool_button_pressed(t: int) -> void:
 	GlobalSignalbus.emit_signal("ToolSelected", t)
@@ -126,6 +111,7 @@ func add_preview(t: int, r: Variant, i: int) -> void:
 func tool_select(t: int) -> void:
 	match t:
 		0: # pad_generator
+			#types_container.show()
 			samples_container.hide()
 			palette_container.show()
 		1: # spawner_generator
@@ -157,6 +143,21 @@ func tool_select(t: int) -> void:
 		_: #hide_all
 			samples_container.hide()
 			palette_container.hide()
+
+func preview_selected(n: PreviewBox) -> void:
+	match n.get_type():
+		0:
+			for c in samples_container.get_children():
+				c.unselect()
+			#n.select()
+			ResourceManager.select_sample(n.get_i())
+		1:
+			for c in palette_container.get_children():
+				c.unselect()
+			#n.select()
+			ResourceManager.select_color(n.get_i())
+		_:
+			printerr("Wrong type provided on preview_selected signal.")
 
 func set_ball_pool(p: Pool) -> void:
 	ball_pool = p

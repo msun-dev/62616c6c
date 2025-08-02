@@ -1,5 +1,5 @@
 extends Node
-
+@warning_ignore_start("unused_signal")
 # resource_manager
 signal SampleAdded(s: SampleResource, i: int)
 signal ColorAdded(c: Color, i: int)
@@ -12,3 +12,5 @@ signal RemoveSample(i: int)
 signal RemoveColor(i: int)
 ## tools
 signal ToolSelected(i: int)
+### PadGenerator
+signal PadTypeSelected(t: int)

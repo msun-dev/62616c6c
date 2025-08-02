@@ -39,9 +39,6 @@ metadata/_custom_type_script = "uid://c1kv13sruri1c"
 [node name="World" instance=ExtResource("1_vs4gg")]
 script = ExtResource("2_474mc")
 
-[node name="PadGenerator" parent="ToolHolder" index="1"]
-disabled = false
-
 [node name="Emitter" parent="Pools/EmitterPool" index="0" node_paths=PackedStringArray("ball_pool") instance=ExtResource("2_dhsbo")]
 position = Vector2(138, 132)
 parameters = SubResource("Resource_qnb53")

@@ -113,7 +113,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
+[node name="PadTypesContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
 [node name="debug_info" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -136,7 +147,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_h4vsp")
 theme_override_fonts/font = ExtResource("6_h4vsp")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 8
 text = "---"
 
 [node name="PadAmount" type="Label" parent="debug_info/VBoxContainer"]
@@ -144,7 +155,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_h4vsp")
 theme_override_fonts/font = ExtResource("6_h4vsp")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 8
 text = "---"
 
 [node name="EmitterAmount" type="Label" parent="debug_info/VBoxContainer"]
@@ -152,7 +163,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_h4vsp")
 theme_override_fonts/font = ExtResource("6_h4vsp")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 8
 text = "---"
 
 [node name="MousePos" type="Label" parent="debug_info/VBoxContainer"]
@@ -160,7 +171,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_h4vsp")
 theme_override_fonts/font = ExtResource("6_h4vsp")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 8
 text = "---"
 
 [node name="OpacityTimer" type="Timer" parent="."]

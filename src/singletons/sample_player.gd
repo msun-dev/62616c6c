@@ -5,7 +5,7 @@ There is a polyphony thing that allows to play million sounds at once.
 Probably had to instance these samples at once and use play method instead
 of instancing sample players. 
 
-LTODO: Replace instancing with polyphony
+TODO: Replace instancing with polyphony
 '''
 
 func preload_sample(s: SampleResource) -> void:

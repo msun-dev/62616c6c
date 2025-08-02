@@ -8,6 +8,10 @@ extends RigidBody2D
 @onready var particle_death: GPUParticles2D = $ParticleDeath
 @onready var collision_particle: PackedScene = preload("res://src/objects/ball/ball_collision_particle.tscn")
 
+const ParticleAlphaAmount: float = 0.45
+const ParticleLightenAmount: float = 0.2
+const ScreenExitToDespawnTime: float = 0.5
+
 var parameters: BallResource
 var contact_pos := Vector2.ZERO
 var dead := false
@@ -49,12 +53,11 @@ func _physics_process(delta) -> void:
 		destroy()
 
 func _create_collision_particle() -> void:
-	var sc = preload("res://src/objects/ball/ball_collision_particle.tscn")
+	var sc = load("res://src/objects/ball/ball_collision_particle.tscn")
 	var particle = sc.instantiate()
 	var c: Color = parameters.get_color()
-	# TODO: move magic vars
-	c.a = 0.45
-	c.lightened(0.2)
+	c.a = ParticleAlphaAmount
+	c.lightened(ParticleLightenAmount)
 	particle.set_modulate(c)
 	if contact_pos:
 		particle.set_global_position(contact_pos)
@@ -66,6 +69,7 @@ func _create_collision_particle() -> void:
 
 func _on_body_entered(body) -> void:
 	_create_collision_particle()
+	body.get_parent().on_ball_collision(self) # HACK: unsafe as heck 
 	if parameters.get_sample_cd() == 0:
 		SamplePlayer.play_sample(parameters.get_sample())
 		return
@@ -75,16 +79,26 @@ func _on_body_entered(body) -> void:
 	timer.start(parameters.get_sample_cd())
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	await get_tree().create_timer(0.5).timeout
+	destroy(true)
+	await get_tree().create_timer(ScreenExitToDespawnTime).timeout
 	queue_free()
 
-func destroy() -> void:
+func double_speed() -> void:
+	apply_impulse(get_linear_velocity() / 2)
+
+func halve_speed() -> void:
+	apply_impulse(-(get_linear_velocity()/2))
+
+func destroy(disable_death_particle: bool = false) -> void:
 	if dead:
 		return
 	
 	dead = true
 	queue_redraw()
+	set_freeze_enabled(true)
+	collision.set_disabled(true)
 	trail_particle.set_emitting(false)
-	particle_death.restart()
-	await particle_death.finished
+	if !disable_death_particle:
+		particle_death.restart()
+		await particle_death.finished
 	queue_free()

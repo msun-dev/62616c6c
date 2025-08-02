@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="0x30786d7573696331"
-run/main_scene="uid://gbf8dkufhvh5"
+run/main_scene="uid://b0bkav1vwe8j5"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0.866667, 0.894118, 1, 1)
+boot_splash/show_image=false
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
@@ -38,8 +40,7 @@ theme/default_font_antialiasing=0
 [layer_names]
 
 2d_physics/layer_1="Pad"
-2d_physics/layer_2="Emitter"
-2d_physics/layer_10="Ball"
+2d_physics/layer_2="Ball"
 
 [physics]
 

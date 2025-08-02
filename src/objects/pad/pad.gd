@@ -14,12 +14,13 @@ Also pad is implemented wrong since %Shape is in global coords and %Pad sits at 
 class_name Pad
 extends Node2D
 
-@export var parameters: PadResource
-
 @onready var collision: StaticBody2D = $Collision
 @onready var shape: CollisionShape2D = %Shape
+@onready var hitbox: Area2D = $HitBox
 @onready var mouse_shape: CollisionShape2D = %MouseShape
 @onready var particle_death: GPUParticles2D = $ParticleDeath
+
+@export var parameters: PadResource
 
 const mouse_hitbox_size: float = 5
 
@@ -64,6 +65,9 @@ func _update_collision() -> void:
 	particle_death.set_rotation(parameters.get_rotation())
 	particle_death.set_global_position(parameters.get_center_pos())
 	particle_death.set_modulate(parameters.get_color())
+
+func on_ball_collision(b: Ball) -> void:
+	pass
 
 func update_position(i: int, p: Vector2) -> void:
 	parameters.set_pos(i, p)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt65uu1550de2"]
+
+[ext_resource type="PackedScene" uid="uid://cy6t0puuvrel" path="res://src/objects/pad/pad.tscn" id="1_uc4qf"]
+[ext_resource type="Script" uid="uid://dhwajvfx7i2pl" path="res://src/objects/pad/slow_pad/slow_pad.gd" id="2_c3sli"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cxvt8"]
+resource_local_to_scene = true
+custom_solver_bias = 0.877
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf570"]
+resource_local_to_scene = true
+size = Vector2(10, 3)
+
+[node name="SlowPad" instance=ExtResource("1_uc4qf")]
+script = ExtResource("2_c3sli")
+
+[node name="Shape" parent="Collision" index="0"]
+shape = SubResource("SegmentShape2D_cxvt8")
+
+[node name="MouseShape" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_mf570")

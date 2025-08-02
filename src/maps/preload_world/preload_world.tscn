@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0bkav1vwe8j5"]
+
+[ext_resource type="Script" uid="uid://dugbewfwop2fi" path="res://src/maps/preload_world/preload_world.gd" id="1_87yut"]
+
+[node name="PreloadWorld" type="Node"]
+script = ExtResource("1_87yut")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

@@ -5,20 +5,13 @@ extends Tool
 @export var emitter_pool: Pool
 @export var ball_pool: Pool
 
-const type: int = 1
 const emitter_path: Resource = preload("res://src/objects/emitter/emitter.tscn")
 const distance_to_edit: float = 25.
 const min_spawn_cd: float = 0.1
 const max_spawn_cd: float = 10.
 const collision_mask: int = 0x0002
 
-enum MouseStates {
-	MouseUp = 0,
-	MouseDown = 1
-}
-
 var emitter: Emitter = null
-var mouse_state := MouseStates.MouseUp
 var mouse_rotation: float = 0.
 var mouse_pos_start := Vector2.ZERO
 var mouse_pos := Vector2.ZERO
@@ -28,45 +21,17 @@ var percentage: float = -1.
 var current_cd: float = max_spawn_cd
 
 func _ready() -> void:
-	GlobalSignalbus.ToolSelected.connect(_on_tool_selected)
+	super()
+	type = 1
 
 func _unhandled_input(event) -> void:
-	if disabled:
-		return
-	
-	if (event is InputEventMouseButton &&
-		mouse_state == MouseStates.MouseUp &&
-		event.button_index == MOUSE_BUTTON_LEFT &&
-		event.is_pressed()):
-			# doing something once when mouse pressed:
-			mouse_state = MouseStates.MouseDown
-			mouse_pos_start = MouseObserver.get_mouse_pos()
-			circle.set_global_position(mouse_pos_start)
-			circle.set_color(ResourceManager.get_current_color()[1])
-			
-	elif (event is InputEventMouseButton &&
-		mouse_state == MouseStates.MouseDown &&
-		event.button_index == MOUSE_BUTTON_LEFT &&
-		event.is_released()):
-			# doing something once when mouse released:
-			mouse_state = MouseStates.MouseUp
-			mouse_rotation = 0
-			_create_emitter(mouse_pos_start)				
-			percentage = -1
-			circle.deactivate()
-			
-	elif (event is InputEventMouseButton && 
-		event.button_index == MOUSE_BUTTON_RIGHT &&
-		event.is_pressed()):
-			var b: Emitter = _get_body_under_mouse(collision_mask, Emitter)
-			if b:
-				b.destroy()
+	super(event)
 
 func _process(delta) -> void:
-	match mouse_state:
-		MouseStates.MouseUp:
+	match state:
+		States.MouseUp:
 			pass
-		MouseStates.MouseDown:
+		States.MouseDown:
 			if ResourceManager.are_both_selected():
 				mouse_pos = MouseObserver.get_mouse_pos()
 				distance_to_mouse = mouse_pos_start.distance_to(mouse_pos)
@@ -77,6 +42,28 @@ func _process(delta) -> void:
 					percentage = (rad_to_deg(mouse_rotation) + 180) / 360
 					current_cd = max_spawn_cd * percentage
 					circle.set_cd(current_cd)
+
+func _leftclick_down_action(e: InputEvent) -> void:
+	state = States.MouseDown
+	mouse_pos_start = MouseObserver.get_mouse_pos()
+	circle.set_global_position(mouse_pos_start)
+	circle.set_color(ResourceManager.get_current_color()[1])
+
+func _leftclick_up_action(e: InputEvent) -> void:
+	state = States.MouseUp
+	mouse_rotation = 0
+	_create_emitter(mouse_pos_start)				
+	percentage = -1
+	circle.deactivate()
+
+func _rightclick_down_action(e: InputEvent) -> void:
+	var b: Emitter = _get_body_under_mouse(collision_mask, Emitter)
+	if b:
+		b.destroy()
+
+func _rightclick_during_leftclick(e: InputEvent) -> void:
+	# TODO: Move process to this method
+	pass
 
 func _create_emitter(p: Vector2) -> void:
 	var cur_col: Array = ResourceManager.get_current_color()
@@ -95,9 +82,3 @@ func _create_emitter(p: Vector2) -> void:
 	emitter.update_position(p)
 	emitter.ball_pool = ball_pool
 	emitter_pool.add_child(emitter)
-
-func _on_tool_selected(t: int) -> void:
-	if t == type:
-		set_disabled(false)
-	else:
-		set_disabled(true)

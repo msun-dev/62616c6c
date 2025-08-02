@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwkbnly0vnw1j"]
+[gd_scene load_steps=5 format=3 uid="uid://cwkbnly0vnw1j"]
 
 [ext_resource type="Script" uid="uid://cxp36cvplwyrb" path="res://src/objects/UI/preview/color_preview/color_preview.gd" id="1_3tvud"]
 [ext_resource type="Theme" uid="uid://ciofj0omck83g" path="res://assets/theme.tres" id="2_uxteu"]
@@ -6,8 +6,6 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6xg6n"]
 size = Vector2(60, 34)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xg6n"]
 
 [node name="Preview" type="MarginContainer"]
 anchors_preset = 8
@@ -87,14 +85,6 @@ text = "1234567890"
 horizontal_alignment = 1
 clip_text = true
 text_overrun_behavior = 1
-
-[node name="Button" type="Button" parent="StuffContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6xg6n")
-action_mode = 0
-flat = true
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

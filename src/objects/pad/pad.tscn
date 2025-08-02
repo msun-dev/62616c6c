@@ -23,6 +23,7 @@ shape = SubResource("SegmentShape2D_nxjbj")
 disabled = true
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="MouseShape" type="CollisionShape2D" parent="HitBox"]
 unique_name_in_owner = true
