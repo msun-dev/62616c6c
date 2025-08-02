@@ -20,7 +20,6 @@ func _init() -> void:
 	super()
 	
 	type = 0
-	#PadNode = PadPaths[current_type].instantiate()
 
 func _ready() -> void:
 	super()

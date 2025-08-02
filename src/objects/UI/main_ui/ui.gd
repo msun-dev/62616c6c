@@ -3,6 +3,7 @@ class_name UI
 
 @onready var samples_container: VBoxContainer = %SamplesVContainer
 @onready var palette_container: VBoxContainer = %PaletteVContainer
+@onready var pad_types_container: HBoxContainer = $PadTypesContainer
 @onready var opacity_timer: Timer = $OpacityTimer
 
 const SamplePreview: Resource = preload("res://src/objects/UI/preview/sample_preview/sample_preview.tscn")
@@ -16,7 +17,7 @@ var emitter_pool: Pool = null
 var tween_opacity: Tween = null
 
 ## "Private" methods
-func _ready():
+func _ready() -> void:
 	GlobalSignalbus.SampleAdded.connect(_on_sample_added)
 	GlobalSignalbus.ColorAdded.connect(_on_color_added)
 	#GlobalSignalbus.PreviewSelected.connect(_on_preview_selected)
@@ -94,7 +95,10 @@ func _on_tool_button_pressed(t: int) -> void:
 	GlobalSignalbus.emit_signal("ToolSelected", t)
 	tool_select(t)
 
-func _on_opacity_timer_timeout():
+func _on_pad_type_pressed(t: int) -> void:
+	GlobalSignalbus.PadTypeSelected.emit(t)
+
+func _on_opacity_timer_timeout() -> void:
 	_create_opacity_tween()
 
 ## Public methods
@@ -114,15 +118,18 @@ func tool_select(t: int) -> void:
 			#types_container.show()
 			samples_container.hide()
 			palette_container.show()
+			pad_types_container.show()
 		1: # spawner_generator
 			samples_container.show()
 			palette_container.show()
+			pad_types_container.hide()
 		2: # nuke button
 			pad_pool.clear()
 			ball_pool.clear()
 			emitter_pool.clear()
 			samples_container.hide()
 			palette_container.hide()
+			pad_types_container.hide()
 		3: # misc menu
 			# toggle ball trajectory
 			# toggle ball collisions

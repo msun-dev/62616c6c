@@ -75,14 +75,6 @@ func _load_color(c: Color) -> void:
 	palette.append(c)
 	GlobalSignalbus.emit_signal("ColorAdded", c, palette.size() - 1)
 
-func _save_data() -> void:
-	# TODO: Implement
-	pass
-
-func _load_data() -> void:
-	# TODO: Implement
-	pass
-
 func remove_resource(t: int, i: int) -> void:
 	# Maybe delete emitters with that resource also?
 	match t:
@@ -113,6 +105,7 @@ func get_palette() -> Array[Color]:
 	return palette
 
 # TODO: Remove that shit, left as -1 if -1, no need for array
+# And, cant come up with the solution :/
 func get_current_sample() -> Array:
 	if selected_sample != -1:
 		return [1, samples[selected_sample]]
