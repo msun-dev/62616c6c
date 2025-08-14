@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diqgkqxnrmplq"
-path="res://.godot/imported/icon.png-cb34c09671d0ba8ba8a8bdc4a9469ea3.ctex"
+uid="uid://djokhst31enhf"
+path="res://.godot/imported/toggled.png-aa4931af7c825c6498a286d8789e2086.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/tools/pad_generator/icon.png"
-dest_files=["res://.godot/imported/icon.png-cb34c09671d0ba8ba8a8bdc4a9469ea3.ctex"]
+source_file="res://assets/sprites/buttons/emitter_generator/toggled.png"
+dest_files=["res://.godot/imported/toggled.png-aa4931af7c825c6498a286d8789e2086.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

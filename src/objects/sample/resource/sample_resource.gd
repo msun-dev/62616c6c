@@ -6,11 +6,6 @@ extends Resource
 @export var label: String
 @export var stream: Resource = null
 
-func _notification(what: int) -> void:
-	match what:
-		NOTIFICATION_PREDELETE:
-			print("good-bye")
-
 func initiate_sample(load_from_res: bool = 0) -> bool:
 	# TODO: Add sample upload success check
 	# NB: Use load() instead of load_from_file() to runtime load files in res:// dir.

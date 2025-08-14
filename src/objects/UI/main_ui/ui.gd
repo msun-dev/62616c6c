@@ -14,7 +14,8 @@ const opacity_shift_duration: float = 5.
 var pad_pool: Pool = null
 var ball_pool: Pool = null
 var emitter_pool: Pool = null
-var tween_opacity: Tween = null
+var ui_tween_opacity_tween: Tween = null
+var pad_types_opacity_tween: Tween = null
 
 ## "Private" methods
 func _ready() -> void:
@@ -24,6 +25,11 @@ func _ready() -> void:
 	%ButtonPad.pressed.connect(_on_tool_button_pressed.bind(0))
 	%ButtonEmitter.pressed.connect(_on_tool_button_pressed.bind(1))
 	%ButtonNuke.pressed.connect(_on_tool_button_pressed.bind(2))
+	%Slowdown.pressed.connect(_on_pad_type_pressed.bind(0))
+	%Normal.pressed.connect(_on_pad_type_pressed.bind(1))
+	%Speedup.pressed.connect(_on_pad_type_pressed.bind(2))
+	
+	%Normal.button_pressed = true
 	
 	var samples: Array[SampleResource] = ResourceManager.get_samples()
 	var palette: Array[Color] = ResourceManager.get_palette()
@@ -43,16 +49,16 @@ func _process(delta) -> void:
 	%EmitterAmount.set_text("Emitters: %d" % emitter_pool.get_amount())
 
 func _input(event) -> void:
-	if tween_opacity:
-		tween_opacity.kill()
-		tween_opacity = null
+	if ui_tween_opacity_tween:
+		ui_tween_opacity_tween.kill()
+		ui_tween_opacity_tween = null
 	set_modulate(Color.WHITE)
 
 func _create_opacity_tween() -> void:
-	if tween_opacity:
+	if ui_tween_opacity_tween:
 		return
-	tween_opacity = create_tween()
-	tween_opacity.tween_property(self, "modulate:a", 0.0, opacity_shift_duration)
+	ui_tween_opacity_tween = create_tween()
+	ui_tween_opacity_tween.tween_property(self, "modulate:a", 0.0, opacity_shift_duration)
 
 func _add_sample_preview(t: int, r: SampleResource, i: int) -> void:
 	var preview = SamplePreview.instantiate()
@@ -97,6 +103,16 @@ func _on_tool_button_pressed(t: int) -> void:
 
 func _on_pad_type_pressed(t: int) -> void:
 	GlobalSignalbus.PadTypeSelected.emit(t)
+	match t:
+		0:
+			%Normal.button_pressed = false
+			%Speedup.button_pressed = false
+		1:
+			%Slowdown.button_pressed = false
+			%Speedup.button_pressed = false
+		2:
+			%Slowdown.button_pressed = false
+			%Normal.button_pressed = false
 
 func _on_opacity_timer_timeout() -> void:
 	_create_opacity_tween()
@@ -119,10 +135,12 @@ func tool_select(t: int) -> void:
 			samples_container.hide()
 			palette_container.show()
 			pad_types_container.show()
+			%ButtonEmitter.button_pressed = false
 		1: # spawner_generator
 			samples_container.show()
 			palette_container.show()
 			pad_types_container.hide()
+			%ButtonPad.button_pressed = false
 		2: # nuke button
 			pad_pool.clear()
 			ball_pool.clear()
@@ -130,6 +148,8 @@ func tool_select(t: int) -> void:
 			samples_container.hide()
 			palette_container.hide()
 			pad_types_container.hide()
+			%ButtonEmitter.button_pressed = false
+			%ButtonPad.button_pressed = false
 		3: # misc menu
 			# toggle ball trajectory
 			# toggle ball collisions

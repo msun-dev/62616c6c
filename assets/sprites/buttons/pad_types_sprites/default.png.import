@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://choq2a21f4tet"
-path="res://.godot/imported/speed_up.png-3b6080ff42f75cabd74c17adfcfe7031.ctex"
+uid="uid://ckce0a75we2xr"
+path="res://.godot/imported/default.png-6d1a8a7f8c123e651a858b9e5142fa39.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/tools/pad_generator/pad_types_sprites/speed_up.png"
-dest_files=["res://.godot/imported/speed_up.png-3b6080ff42f75cabd74c17adfcfe7031.ctex"]
+source_file="res://assets/sprites/buttons/pad_types_sprites/default.png"
+dest_files=["res://.godot/imported/default.png-6d1a8a7f8c123e651a858b9e5142fa39.ctex"]
 
 [params]
 

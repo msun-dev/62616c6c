@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://dhuh33oydl00p" path="res://src/objects/tools/emitter_generator/circle_node.gd" id="1_safrh"]
 
 [node name="CircleNode" type="Node2D"]
+top_level = true
 script = ExtResource("1_safrh")

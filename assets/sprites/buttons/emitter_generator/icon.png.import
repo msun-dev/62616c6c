@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duv64542pvk67"
-path="res://.godot/imported/nuke.png-2f511604091988a9a118adc43fdb0d5c.ctex"
+uid="uid://co8y6aekmeo6x"
+path="res://.godot/imported/icon.png-ff0630f6a8a8df04903537ce3d4a3bfb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/UI/tool_button/nuke.png"
-dest_files=["res://.godot/imported/nuke.png-2f511604091988a9a118adc43fdb0d5c.ctex"]
+source_file="res://assets/sprites/buttons/emitter_generator/icon.png"
+dest_files=["res://.godot/imported/icon.png-ff0630f6a8a8df04903537ce3d4a3bfb.ctex"]
 
 [params]
 
@@ -25,10 +25,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

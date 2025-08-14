@@ -1,16 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgwehmfmb3oef"]
+[gd_scene load_steps=15 format=3 uid="uid://bgwehmfmb3oef"]
 
 [ext_resource type="Script" uid="uid://icmlvhk0e8lf" path="res://src/objects/UI/main_ui/ui.gd" id="1_qra4r"]
-[ext_resource type="Texture2D" uid="uid://diqgkqxnrmplq" path="res://src/objects/tools/pad_generator/icon.png" id="2_esn7r"]
-[ext_resource type="Texture2D" uid="uid://co8y6aekmeo6x" path="res://src/objects/tools/emitter_generator/icon.png" id="3_hi45p"]
+[ext_resource type="Texture2D" uid="uid://co8y6aekmeo6x" path="res://assets/sprites/buttons/emitter_generator/icon.png" id="3_j0drn"]
+[ext_resource type="Texture2D" uid="uid://djokhst31enhf" path="res://assets/sprites/buttons/emitter_generator/toggled.png" id="4_lp7ai"]
+[ext_resource type="Texture2D" uid="uid://diqgkqxnrmplq" path="res://assets/sprites/buttons/pad_generator/icon.png" id="5_ajy4u"]
 [ext_resource type="Theme" uid="uid://ciofj0omck83g" path="res://assets/theme.tres" id="5_h4vsp"]
-[ext_resource type="Texture2D" uid="uid://duv64542pvk67" path="res://src/objects/UI/tool_button/nuke.png" id="5_pboug"]
-[ext_resource type="Texture2D" uid="uid://ckce0a75we2xr" path="res://src/objects/tools/pad_generator/pad_types_sprites/default.png" id="6_1sb6g"]
+[ext_resource type="Texture2D" uid="uid://duv64542pvk67" path="res://assets/sprites/buttons/nuke/nuke.png" id="5_pboug"]
+[ext_resource type="Texture2D" uid="uid://ckce0a75we2xr" path="res://assets/sprites/buttons/pad_types_sprites/default.png" id="6_1sb6g"]
 [ext_resource type="FontFile" uid="uid://cd43eom3diqvw" path="res://assets/fonts/freedings.ttf" id="6_h4vsp"]
-[ext_resource type="Texture2D" uid="uid://eujbv2663ivg" path="res://src/objects/tools/pad_generator/pad_types_sprites/speed_down.png" id="7_1updk"]
-[ext_resource type="Texture2D" uid="uid://choq2a21f4tet" path="res://src/objects/tools/pad_generator/pad_types_sprites/speed_up.png" id="8_j0drn"]
-
-[sub_resource type="Theme" id="Theme_8mm7w"]
+[ext_resource type="Texture2D" uid="uid://bmeypdwlplhpn" path="res://assets/sprites/buttons/pad_generator/toggled.png" id="6_orh2w"]
+[ext_resource type="Texture2D" uid="uid://eujbv2663ivg" path="res://assets/sprites/buttons/pad_types_sprites/speed_down.png" id="7_1updk"]
+[ext_resource type="Texture2D" uid="uid://choq2a21f4tet" path="res://assets/sprites/buttons/pad_types_sprites/speed_up.png" id="8_j0drn"]
+[ext_resource type="Texture2D" uid="uid://2004hjs4eabn" path="res://assets/sprites/buttons/pad_types_sprites/default_toggled.png" id="9_orh2w"]
+[ext_resource type="Texture2D" uid="uid://dpylb47ghor4v" path="res://assets/sprites/buttons/pad_types_sprites/speed_up_toggled.png" id="11_0wn15"]
+[ext_resource type="Texture2D" uid="uid://b78e506w2st5t" path="res://assets/sprites/buttons/pad_types_sprites/speed_down_toggled.png" id="13_gukml"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -34,31 +37,35 @@ alignment = 1
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="ButtonPad" type="Button" parent="ToolsContainer/Pad"]
+[node name="ButtonPad" type="TextureButton" parent="ToolsContainer/Pad"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_h4vsp")
 theme_type_variation = &"FlatButton"
-icon = ExtResource("2_esn7r")
-flat = true
-icon_alignment = 1
+toggle_mode = true
+texture_normal = ExtResource("3_j0drn")
+texture_pressed = ExtResource("4_lp7ai")
+stretch_mode = 3
 
 [node name="Emitter" type="MarginContainer" parent="ToolsContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="ButtonEmitter" type="Button" parent="ToolsContainer/Emitter"]
+[node name="ButtonEmitter" type="TextureButton" parent="ToolsContainer/Emitter"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_h4vsp")
 theme_type_variation = &"FlatButton"
-icon = ExtResource("3_hi45p")
-flat = true
-icon_alignment = 1
+toggle_mode = true
+texture_normal = ExtResource("5_ajy4u")
+texture_pressed = ExtResource("6_orh2w")
+stretch_mode = 3
 
 [node name="Nuke" type="MarginContainer" parent="ToolsContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_right = -4
 
 [node name="ButtonNuke" type="Button" parent="ToolsContainer/Nuke"]
 unique_name_in_owner = true
@@ -77,26 +84,35 @@ anchor_left = 0.422
 anchor_top = 0.078
 anchor_right = 0.422
 anchor_bottom = 0.078
-offset_left = -51.064
-offset_top = -13.936
-offset_right = 55.936
-offset_bottom = 26.064
+offset_left = -31.064
+offset_top = -7.936
+offset_right = 51.936
+offset_bottom = 17.064
 grow_horizontal = 2
 
-[node name="Normal" type="Button" parent="PadTypesContainer"]
+[node name="Slowdown" type="TextureButton" parent="PadTypesContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-icon = ExtResource("6_1sb6g")
-flat = true
+theme = ExtResource("5_h4vsp")
+toggle_mode = true
+texture_normal = ExtResource("7_1updk")
+texture_pressed = ExtResource("13_gukml")
 
-[node name="Speedup" type="Button" parent="PadTypesContainer"]
+[node name="Normal" type="TextureButton" parent="PadTypesContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-icon = ExtResource("7_1updk")
-flat = true
+theme = ExtResource("5_h4vsp")
+toggle_mode = true
+texture_normal = ExtResource("6_1sb6g")
+texture_pressed = ExtResource("9_orh2w")
 
-[node name="Slowdown" type="Button" parent="PadTypesContainer"]
+[node name="Speedup" type="TextureButton" parent="PadTypesContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-icon = ExtResource("8_j0drn")
-flat = true
+theme = ExtResource("5_h4vsp")
+toggle_mode = true
+texture_normal = ExtResource("8_j0drn")
+texture_pressed = ExtResource("11_0wn15")
 
 [node name="SampleScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -110,8 +126,8 @@ offset_top = -99.952
 offset_bottom = 100.048
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("5_h4vsp")
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
 
 [node name="SamplesVContainer" type="VBoxContainer" parent="SampleScrollContainer"]
 unique_name_in_owner = true
@@ -133,9 +149,8 @@ offset_top = -99.848
 offset_bottom = 100.152
 grow_horizontal = 0
 grow_vertical = 2
-theme = SubResource("Theme_8mm7w")
+theme = ExtResource("5_h4vsp")
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
 
 [node name="PaletteVContainer" type="VBoxContainer" parent="PaletteScrollContainer"]
 unique_name_in_owner = true
@@ -196,9 +211,12 @@ theme_override_fonts/font = ExtResource("6_h4vsp")
 theme_override_font_sizes/font_size = 8
 text = "---"
 
+[node name="notifications_window" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 512.0
+offset_right = 40.0
+offset_bottom = 552.0
+
 [node name="OpacityTimer" type="Timer" parent="."]
 
-[connection signal="pressed" from="PadTypesContainer/Normal" to="." method="_on_pad_type_pressed" binds= [0]]
-[connection signal="pressed" from="PadTypesContainer/Speedup" to="." method="_on_pad_type_pressed" binds= [1]]
-[connection signal="pressed" from="PadTypesContainer/Slowdown" to="." method="_on_pad_type_pressed" binds= [2]]
 [connection signal="timeout" from="OpacityTimer" to="." method="_on_opacity_timer_timeout"]

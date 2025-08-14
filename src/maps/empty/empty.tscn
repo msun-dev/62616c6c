@@ -30,3 +30,5 @@ ball_pool = NodePath("../../Pools/BallPool")
 [node name="BallPool" parent="Pools" instance=ExtResource("5_rk71q")]
 
 [node name="PadPool" parent="Pools" instance=ExtResource("5_rk71q")]
+
+[node name="ParticlePool" type="Node" parent="Pools"]

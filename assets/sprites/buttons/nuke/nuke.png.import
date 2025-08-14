@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eujbv2663ivg"
-path="res://.godot/imported/speed_down.png-b1f3d22536c71896a8a6e50876d3ea60.ctex"
+uid="uid://duv64542pvk67"
+path="res://.godot/imported/nuke.png-75a2c471106c75261ff758100f78145d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/objects/tools/pad_generator/pad_types_sprites/speed_down.png"
-dest_files=["res://.godot/imported/speed_down.png-b1f3d22536c71896a8a6e50876d3ea60.ctex"]
+source_file="res://assets/sprites/buttons/nuke/nuke.png"
+dest_files=["res://.godot/imported/nuke.png-75a2c471106c75261ff758100f78145d.ctex"]
 
 [params]
 

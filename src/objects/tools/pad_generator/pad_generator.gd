@@ -5,12 +5,12 @@ extends Tool
 const min_size: float = 10.
 
 var PadPaths: Array[String] = [
-	"res://src/objects/pad/pad.tscn",
 	"res://src/objects/pad/slow_pad/slow_pad.tscn",
+	"res://src/objects/pad/pad.tscn",
 	"res://src/objects/pad/speedup_pad/speedup_pad.tscn",
 ]
 
-var current_type = 2
+var current_type = 1
 var pad_child: Pad = null
 var PadNode: Pad = null
 var a: Vector2

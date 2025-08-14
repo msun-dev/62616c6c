@@ -8,7 +8,7 @@ extends RigidBody2D
 @onready var particle_death: GPUParticles2D = $ParticleDeath
 @onready var collision_particle: PackedScene = preload("res://src/objects/ball/ball_collision_particle.tscn")
 
-const ParticleAlphaAmount: float = 0.45
+const ParticleAlphaAmount: float = 0.3
 const ParticleLightenAmount: float = 0.2
 const ScreenExitToDespawnTime: float = 0.5
 
@@ -62,7 +62,9 @@ func _create_collision_particle() -> void:
 	if contact_pos:
 		particle.set_global_position(contact_pos)
 	
-	get_tree().get_root().add_child(particle)
+	# Super unsafe line of code
+	get_tree().get_root().get_node("World/Pools/ParticlePool").add_child(particle)
+	
 	# My finest creation. Also you can use semicolons in lambdas if you need to! Neat! 
 	particle.finished.connect((func(b): b.queue_free()).bind(particle))
 	particle.restart()

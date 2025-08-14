@@ -41,6 +41,7 @@ func _process(delta) -> void:
 					circle.set_cursor_rotation(mouse_rotation)
 					percentage = (rad_to_deg(mouse_rotation) + 180) / 360
 					current_cd = max_spawn_cd * percentage
+					current_cd = roundf(current_cd * 10) / 10
 					circle.set_cd(current_cd)
 
 func _leftclick_down_action(e: InputEvent) -> void:

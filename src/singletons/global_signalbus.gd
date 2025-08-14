@@ -10,7 +10,7 @@ signal ResourceRemoved(t: int, i: int)
 ## previews
 signal RemoveSample(i: int)
 signal RemoveColor(i: int)
-## tools
+## tools buttons 
 signal ToolSelected(i: int)
 ### PadGenerator
 signal PadTypeSelected(t: int)

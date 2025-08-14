@@ -1,10 +1,10 @@
+# DONE: Now shows current emitter cooldown before creating emitter
 class_name CircleNode # the heck is this name
 extends Node2D
 
 const outer_circle_radius: float = 45.
 const inner_circle_radius: float = 35.
 const emitter_circle_radius: float = 5.
-#const rot_line_length: float = 80. #outer_circle_radius + 35
 const edges_width: float = 2.
 const circle_width: float = 3.
 const appear_time: float = .25
@@ -12,11 +12,12 @@ const appear_time: float = .25
 var active := false
 var cursor_rotation: float = .0
 var rotation_second_point: Vector2
+var rotation_first_point: Vector2 
 var opacity: float = .0
 var color: Color = Color.BLACK
 var fill_color: Color = Color.WHITE
 var outline_color: Color = Color.DEEP_PINK
-var cd_string: String = "sgjkdf"
+var cd_string: String
 var text_position := Vector2.ZERO
 
 var opacity_tween: Tween
@@ -50,45 +51,37 @@ func _draw() -> void:
 		false,
 		edges_width
 	)
-	#draw_circle( # Spawner circle
-		#Vector2.ZERO,
-		#emitter_circle_radius, 
-		#color,
-		#false,
-		#edges_width
-	#)
-	draw_line( # Value line
-		Vector2.ZERO,
+	draw_line( # Value (rotation) line
+		rotation_first_point,
 		rotation_second_point, 
 		color, 
-		1
+		edges_width
 	)
-	#draw_string_outline(
-		#font,
-		#text_position,
-		#cd_string,
-		#HORIZONTAL_ALIGNMENT_CENTER,
-		#-1,
-		#16,
-		#3,
-		#outline_color
-	#)
-	#draw_string(
-		#font,
-		#text_position,
-		#cd_string,
-		#HORIZONTAL_ALIGNMENT_CENTER,
-		#-1,
-		#16,
-		#color
-	#)
+	draw_string_outline( # cd string outline
+		font,
+		text_position,
+		cd_string,
+		HORIZONTAL_ALIGNMENT_LEFT,
+		-1,
+		16,
+		3,
+		outline_color
+	)
+	draw_string( # cd string text
+		font,
+		text_position,
+		cd_string,
+		HORIZONTAL_ALIGNMENT_LEFT,
+		-1,
+		16,
+		color
+	)
 	
 	
 func _process(delta) -> void:
 	color.a = opacity
 	fill_color.a = opacity
 	outline_color.a = opacity
-	rotation_second_point = (Vector2.RIGHT * outer_circle_radius).rotated(cursor_rotation)
 	queue_redraw()
 
 func _reset() -> void:
@@ -122,6 +115,8 @@ func deactivate() -> void:
 
 func set_cursor_rotation(r: float) -> void:
 	cursor_rotation = r
+	rotation_second_point = (Vector2.RIGHT * outer_circle_radius).rotated(cursor_rotation)
+	rotation_first_point = Vector2.RIGHT.move_toward(rotation_second_point, 15)
 
 func set_color(c: Color) -> void:
 	color = c.darkened(0.25)
@@ -130,3 +125,6 @@ func set_color(c: Color) -> void:
 
 func set_cd(c: float) -> void:
 	cd_string = String.num(c, 2)
+	var string_size = font.get_string_size(cd_string, HORIZONTAL_ALIGNMENT_LEFT, -1, 16)
+	string_size.y -= 32 # Yeah, I did that. Yeah, now what? 
+	text_position = Vector2.ZERO - string_size / 2

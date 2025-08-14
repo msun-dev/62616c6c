@@ -2,7 +2,7 @@ extends Node
 
 const SoundsExt: Array[StringName] = ["wav", "mp3", "ogg"]
 const ImageExt: Array[StringName] = ["png", "jpg", "jpeg"]
-const MaxPaletteSize: int = 999999
+const MaxPaletteSize: int = 999999 # :O
 
 var palette: Array[Color] = []
 var samples: Array[SampleResource] = []

@@ -19,7 +19,7 @@ const main_scene: String = "res://src/maps/empty/empty.tscn"
 
 func _ready() -> void:
 	bg.set_color(ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
-	await _preload_particles()
+	_preload_particles()
 	get_tree().change_scene_to_file.call_deferred(main_scene)
 
 func _preload_particles() -> void:
@@ -29,6 +29,7 @@ func _preload_particles() -> void:
 		particle.set_global_position(Vector2(-512, -512))
 		particle.set_emitting(true)
 		particle.restart()
+		particle.queue_free()
 	
 #func _preload_resourceloader() -> void:
 	#ResourceLoader.load

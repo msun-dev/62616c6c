@@ -64,7 +64,7 @@ func _rightclick_up_action(e: InputEvent) -> void:
 func _rightclick_during_leftclick(e: InputEvent) -> void:
 	pass
 
-func _get_body_under_mouse(mask: int, type: Variant) -> Variant:
+func _get_body_under_mouse(mask: int, t: Variant) -> Variant:
 	var q := PhysicsPointQueryParameters2D.new()
 	q.set_collide_with_bodies(false)
 	q.set_collide_with_areas(true)
@@ -74,12 +74,13 @@ func _get_body_under_mouse(mask: int, type: Variant) -> Variant:
 	var b: Array[Dictionary] = w.intersect_point(q)
 	if len(b) > 0:
 		var n = b.back()["collider"].get_parent()
-		if is_instance_of(n, type):
+		if is_instance_of(n, t):
 			return n
 		else:
 			return null
 	else:
 		return null
+	@warning_ignore("unreachable_code")
 	'''
 	Yeah but nulls are 3rd party thing and idk.
 	
